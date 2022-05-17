@@ -12,13 +12,12 @@ private:
     int sender_index, receiver_index;
     bool sender_cond, receiver_cond; // variables to be assigned 'true' only if sender & receiver's account exist with the entered account number
 
-    void setData();
-
 public:
+    Transaction();
     void makeTransaction();
 };
 
-void Transaction::setData()
+Transaction::Transaction()
 {
     sender_cond = false;
     receiver_cond = false;
@@ -37,7 +36,6 @@ void Transaction::makeTransaction()
 {
     do
     {
-        setData();
         for (int i = 0; i < 50; i++)
         {
             if (sender_accnum == user[i].get_Useraccountno())
@@ -59,23 +57,23 @@ void Transaction::makeTransaction()
         if (sender_cond == false)
         {
             cout << "Transaction Unsuccessful!!!" << endl;
-            cout << "A sender/user with the specified account number: " << sender_accnum << " cannot be located!";
+            cout << "A sender/user with the specified Account Number: " << sender_accnum << " cannot be located!";
         }
 
         else if (receiver_cond == false)
         {
             cout << "Transaction Unsuccessful!!!" << endl;
-            cout << "A receiver/user with the specified account number: " << receiver_accnum << " cannot be located!";
+            cout << "A receiver/user with the specified Account Number: " << receiver_accnum << " cannot be located!";
         }
     } while (sender_cond == false || receiver_cond == false);
 
-    user[receiver_index].balance += transaction_amount;
-    user[sender_index].balance -= transaction_amount;
+    user[receiver_index].addBalance(transaction_amount);
+    user[sender_index].subtractBalance(transaction_amount);
 
     cout << "Transaction Successful!!!" << endl;
-    cout << "An amount of $" << transaction_amount << " successfully transferred to a user with account number: " << receiver_accnum << endl;
-    cout << "\nYour bank balance before transaction: " << '$' << user[sender_index].balance + transaction_amount << endl;
-    cout << "Your bank balance after transaction: " << '$' << user[sender_index].balance;
+    cout << "An amount of $" << transaction_amount << " successfully transferred to a user with Account Number: " << receiver_accnum << endl;
+    cout << "\nYour Bank Balance before transaction: " << '$' << user[sender_index].get_balance() + transaction_amount << endl;
+    cout << "Your Bank Balance after transaction: " << '$' << user[sender_index].get_balance();
 }
 
 #endif /* Transaction_Class_hpp */
