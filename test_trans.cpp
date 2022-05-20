@@ -4,32 +4,35 @@
 
 using namespace std;
 
-void user_list(User user[], int size);
+void displayTransactions();
 
 int main()
 {
-    user[0].set_Useraccountno("12345678");
-    user[0].set_Userbalance(250000);
+    user[0].setUserAccountNo("12345678");
+    user[0].setUserBalance(250000);
 
-    user[5].set_Useraccountno("23456789");
-    user[5].set_Userbalance(14000);
+    user[5].setUserAccountNo("23456789");
+    user[5].setUserBalance(14000);
 
-    Transaction t;
-    t.makeTransaction();
+    trans[0].makeTransaction();
+    trans[2].makeTransaction();
+
+    displayTransactions();
 
     return 0;
 }
 
-// function for user list
-void user_list(User user[], int size)
+void displayTransactions()
 {
-    cout << "|----------------------------------------------------User List----------------------------------------------------|" << endl;
-    cout << "|User Name --- Account No --- User CNIC --- User Balance --- User Adress --- User Father Name --- User Phone Number|" << endl;
-    for (int i = 0; i < size; i++)
+    cout << "----------------------------------------------------Transactions List----------------------------------------------------" << endl;
+    cout << "|Transaction Date & Time  --- Transferred By (AN) --- Transaction Amount --- Transferred To (AN)|" << endl;
+    for (int i = 0; i < 5; i++)
     {
-        cout << "|" << user[i].get_Username() << "|" << user[i].get_Useraccountno() << "|" << user[i].get_Usercnic();
-        cout << "|" << user[i].get_balance() << "|" << user[i].get_Useraddress() << "|" << user[i].get_Userfathername();
-        cout << "|" << user[i].get_Userphoneno() << "|" << endl;
+        if (trans[i].getTransactionTime() != "None")
+            cout << '|' << trans[i].getTransactionTime() << " ---      " << trans[i].getSenderAccNo() << "       ---       "
+                 << trans[i].getTransactionAmount() << "       ---      " << trans[i].getReceiverAccNo() << "      |" << endl;
+
+        else
+            cout << "|                         ---                     ---                    ---                    |" << endl;
     }
-    cout << "|-----------------------------------------------------------------------------------------------------------------|" << endl;
 }
