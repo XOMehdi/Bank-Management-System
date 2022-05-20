@@ -19,7 +19,7 @@ int main()
     user[5].setUserBalance(14000);
 
     trans[0].makeTransaction();
-    trans[2].makeTransaction();
+    // trans[2].makeTransaction();
 
     displayTransactions();
 
@@ -29,13 +29,13 @@ int main()
 void displayTransactions()
 {
     cout << "-------------------------------------------Transactions List-------------------------------------" << endl;
-    cout << "|Transaction Time & Date   --- Transferred By (AN) --- Transaction Amount --- Transferred To (AN)|" << endl;
+    cout << "|Transaction Time --- Transaction Date --- Transferred By (AN) --- Transferred To (AN) --- Transaction Amount|" << endl;
     for (int i = 0; i < 5; i++)
     {
         if (trans[i].getTransactionStatus() == true)
             trans[i].showTransaction();
 
         else
-            cout << "|                         ---                     ---                    ---                    |" << endl;
+            cout << "                  ---                  ---                     ---                     ---                    " << endl;
     }
 }

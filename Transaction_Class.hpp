@@ -16,8 +16,8 @@ private:
 public:
     Transaction();
     void makeTransaction();
-    void showTransaction();
-    bool getTransactionStatus();
+    void showTransaction() const;
+    bool getTransactionStatus() const;
 };
 
 Transaction::Transaction()
@@ -133,17 +133,17 @@ void Transaction::makeTransaction()
     cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
-void Transaction::showTransaction()
+void Transaction::showTransaction() const
 {
     // printing data in a tabular form
-    cout << '|' << transaction_time << " ";
-    cout << transaction_date << " ---      ";
-    cout << sender_accnum << "       ---       ";
-    cout << transaction_amount << "         ---      ";
-    cout << receiver_accnum << "      |" << endl;
+    cout << ' ' << transaction_time << "         --- ";
+    cout << transaction_date << "  --- ";
+    cout << sender_accnum << "            --- ";
+    cout << receiver_accnum << "            --- ";
+    cout << transaction_amount << endl;
 }
 
-bool Transaction::getTransactionStatus()
+bool Transaction::getTransactionStatus() const
 {
     if (sender_cond == true && receiver_cond == true)
         return true;
