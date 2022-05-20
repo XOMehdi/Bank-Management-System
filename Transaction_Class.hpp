@@ -8,7 +8,7 @@ using namespace std;
 class Transaction
 {
 private:
-    string sender_accnum, receiver_accnum, transaction_time;
+    string sender_accnum, receiver_accnum, transaction_time, transaction_date;
     float transaction_amount;
     int sender_index, receiver_index;
     bool sender_cond, receiver_cond; // variables to be assigned 'true' only if sender & receiver's account exist with the entered account number
@@ -18,8 +18,9 @@ public:
     void makeTransaction();
 
     // getter functions
-    string getTransactionTime();
     float getTransactionAmount();
+    string getTransactionTime();
+    string getTransactionDate();
     string getSenderAccNo();
     string getReceiverAccNo();
 };
@@ -84,7 +85,7 @@ void Transaction::makeTransaction()
             {
                 cout << "----------------------------------------------------------------------------------------------" << endl;
                 cout << "Transaction Unsuccessful!!!" << endl;
-                cout << "No Accounts exist with the specified Account Number: " << endl;
+                cout << "No Accounts exist with the specified Account Numbers: " << endl;
                 cout << sender_accnum << endl;
                 cout << receiver_accnum << endl;
                 cout << "----------------------------------------------------------------------------------------------" << endl;
@@ -99,21 +100,29 @@ void Transaction::makeTransaction()
     user[receiver_index].addBalance(transaction_amount);
     user[sender_index].subtractBalance(transaction_amount);
 
-    time_t current_time = time(0);
-    transaction_time = ctime(&current_time);
+    // retrieving date & time of the transaction
+    time_t dt = time(0);
+    string date_time = ctime(&dt);
 
-    // a characters array to store only relevant characters from the 'transaction_time' string variable
-    char relevant_time[24];
+    // a characters array to store only relevant characters from the 'date_time' string variable
+    char relevant_dt[24];
     for (int i = 0; i < 24; i++)
     {
-        relevant_time[i] = transaction_time[i];
+        relevant_dt[i] = date_time[i];
     }
 
-    // resetting the value of 'transaction_time' variable with correct info from the char array
-    transaction_time = relevant_time[0];
+    // storing only the time in the 'transaction_time' & the date in the 'transaction_date' variable from the char array
+    transaction_date = relevant_dt[0];
+    transaction_time = relevant_dt[11];
     for (int i = 1; i < 24; i++)
     {
-        transaction_time += relevant_time[i];
+        if (i < 10 || i >= 19)
+        {
+            transaction_date += relevant_dt[i];
+        }
+
+        else if (i > 11 && i < 19)
+            transaction_time += relevant_dt[i];
     }
 
     cout << "----------------------------------------------------------------------------------------------" << endl;
@@ -125,14 +134,19 @@ void Transaction::makeTransaction()
     cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
+float Transaction::getTransactionAmount()
+{
+    return transaction_amount;
+}
+
 string Transaction::getTransactionTime()
 {
     return transaction_time;
 }
 
-float Transaction::getTransactionAmount()
+string Transaction::getTransactionDate()
 {
-    return transaction_amount;
+    return transaction_date;
 }
 
 string Transaction::getSenderAccNo()
