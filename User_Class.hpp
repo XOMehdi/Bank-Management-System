@@ -7,19 +7,11 @@ using namespace std;
 class User
 {
 private:
-    string account_no;
-    string name;
-    string address;
-    string cnic_number;
-    string Phone_number;
-    string father_name;
-    string pin;
-    // float balance;
-    string status;
+    string account_no, name, father_name, address, cnic_number, Phone_number, pin, status;
+    float balance;
     static int usercount; // to create acoount number
 
 public:
-    float balance;
     //    counstructor for no of users and to assingn account no;
     User()
     {
@@ -27,91 +19,101 @@ public:
         status = "Not Active";
     }
 
+    void addBalance(float transaction_amount)
+    {
+        this->balance += transaction_amount;
+    }
+
+    void subtractBalance(float transaction_amount)
+    {
+        this->balance -= transaction_amount;
+    }
+
     //    setters for all objects
-    void set_Useraccountno(string i)
+    void setUserAccountNo(string i)
     {
         account_no = i;
     }
-    void set_Username(string i)
+    void setUsername(string i)
     {
         name = i;
     }
-    void set_Useradress(string i)
+    void setUserAddress(string i)
     {
         address = i;
     }
-    void set_Usercnic(string i)
+    void setUserCnic(string i)
     {
         cnic_number = i;
     }
-    void set_Userfathername(string i)
+    void setUserFatherName(string i)
     {
         father_name = i;
     }
-    void set_Userpin(string i)
+    void setUserPin(string i)
     {
         pin = i;
     }
-    void set_Userbalance(float i)
+    void setUserBalance(float i)
     {
         balance = i;
     }
-    void set_Userphoneno(string i)
+    void setUserPhoneNo(string i)
     {
         Phone_number = i;
     }
-    void set_Userstatus(string i)
+    void setUserStatus(string i)
     {
         status = i;
     }
 
     //    getters for all objects
-    string get_Useraccountno()
+    string getUserAccountNo()
     {
         return account_no;
     }
 
-    string get_Username()
+    string getUserName()
     {
         return name;
     }
 
-    string get_Useraddress()
+    string getUserAddress()
     {
         return address;
     }
 
-    string get_Usercnic()
+    string getUserCnic()
     {
         return cnic_number;
     }
 
-    string get_Userfathername()
+    string getUserFatherName()
     {
         return father_name;
     }
 
-    string get_Userphoneno()
+    string getUserPhoneNo()
     {
         return Phone_number;
     }
 
-    string get_Userpin()
+    string getUserPin()
     {
         return pin;
     }
 
-    float get_balance()
+    float getBalance()
     {
         return balance;
     }
 
-    int get_usercount()
+    int getUserCount()
     {
         return usercount;
     }
 
-    string get_status()
+    string getStatus()
     {
         return status;
     }
