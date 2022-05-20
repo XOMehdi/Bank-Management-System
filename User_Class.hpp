@@ -68,7 +68,7 @@ public:
     }
 
     //    getters for all objects
-    string getUserAccountNo()
+    string getUserAccNo()
     {
         return account_no;
     }

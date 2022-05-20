@@ -17,7 +17,7 @@ public:
     Transaction();
     void makeTransaction();
 
-    // setter functions
+    // getter functions
     string getTransactionTime();
     float getTransactionAmount();
     string getSenderAccNo();
@@ -46,13 +46,13 @@ void Transaction::makeTransaction()
 
         for (int i = 0; i < 50; i++)
         {
-            if (sender_accnum == user[i].getUserAccountNo())
+            if (sender_accnum == user[i].getUserAccNo())
             {
                 sender_index = i;
                 sender_cond = true;
             }
 
-            else if (receiver_accnum == user[i].getUserAccountNo())
+            else if (receiver_accnum == user[i].getUserAccNo())
             {
                 receiver_index = i;
                 receiver_cond = true;
