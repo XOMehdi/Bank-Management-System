@@ -1,34 +1,34 @@
-#include "User_Class.hpp"
 #include "Transaction_class.hpp"
+#include "Account_Class.hpp"
 
 #include <iostream>
 
 using namespace std;
 
 // member function to display all the transactions made by the users
-void displayTransactions();
+void viewTransactions();
+void viewAccountsInfo();
 
-//                               'main function only to test the transaction class'
+//                               'main function to test the transaction class and accounts class'
 
 int main()
 {
-    user[0].setUserAccountNo("12345678");
-    user[0].setUserBalance(250000);
+    accounts[0].readAccount();
 
-    user[5].setUserAccountNo("23456789");
-    user[5].setUserBalance(14000);
+    accounts[3].readAccount();
 
     trans[0].makeTransaction();
-    // trans[2].makeTransaction();
+    trans[2].makeTransaction();
 
-    displayTransactions();
+    viewTransactions();
+    viewAccountsInfo();
 
     return 0;
 }
 
-void displayTransactions()
+void viewTransactions()
 {
-    cout << "-------------------------------------------Transactions List-------------------------------------" << endl;
+    cout << "---------------------------------------------Transactions List----------------------------------------------------" << endl;
     cout << "|Transaction Time --- Transaction Date --- Transferred By (AN) --- Transferred To (AN) --- Transaction Amount|" << endl;
     for (int i = 0; i < 5; i++)
     {
@@ -38,4 +38,19 @@ void displayTransactions()
         else
             cout << "                  ---                  ---                     ---                     ---                    " << endl;
     }
+    cout << "------------------------------------------------------------------------------------------------------------------" << endl;
+}
+
+void viewAccountsInfo()
+{
+    cout << "-------------------------Accounts List---------------------------" << endl;
+    cout << "|Account Number --- Account Holder Name --- Account Balance|" << endl;
+    for (int i = 0; i < 5; i++)
+    {
+        if (accounts[i].getStatus() == true)
+            accounts[i].displayAccountInfo();
+        else
+            cout << "                ---                     ---                 " << endl;
+    }
+    cout << "------------------------------------------------------------------" << endl;
 }

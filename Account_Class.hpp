@@ -13,64 +13,85 @@ private:
     string account_num;
     string account_name;
     float balance;
+    bool status = false;
 
 public:
-    void readAccount();                             // function to get data from user
-    void displayAccountInfo() const;                // function to show data on screen
-    void modifyAccountInfo();                       // function to add new data
-    void depositAmount(float deposit_amount = 0);   // function to accept amount and add to balance amount
-    void withdrawAmount(float withdraw_amount = 0); // function to accept amount and subtract from balance amount
-    void report() const;                            // function to show data in tabular format
+    void readAccount();
+    void displayAccountInfo() const;
+    void modifyAccountInfo();
+    void depositAmount();
+    void withdrawAmount();
 
-    string getAccountNo() const; // function to return account number
-    float getBalance() const;    // function to return balance amount
-};                               // class ends here
+    // getter functions
+    string getAccountNo() const;
+    float getBalance() const;
+    bool getStatus() const;
+
+    // functions for integration of transaction class
+    void addTransactionAmount(float);
+    void subTransactionAmount(float);
+};
 
 void Account::readAccount()
 {
-    cout << "Enter the Account Number:";
-    cin >> account_num;
+    status = true;
 
-    cout << "Enter the Name of The Account Holder: ";
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+    cout << "Enter the Account Number (8 digits): ";
+    cin >> account_num;
+    cin.ignore();
+
+    cout << "\nEnter the Name of The Account Holder: ";
     getline(cin, account_name);
 
-    cout << "Enter The Amount to be added to the Account Balance : ";
+    cout << "\nEnter The Amount to be added to the Account Balance : ";
     cin >> balance;
-    cout << "\nAccount Created..";
+
+    cout << "\nAccount Created!" << endl;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
-void Account::displayAccountInfo() const
-{
-    cout << account_num << setw(10) << " ";
-    cout << account_name << setw(10) << " ";
-    cout << balance << endl;
-}
-
-void Account::modifyAccountInfo()
-{
-    cout << "Change Account Number: ";
-    cin >> account_num;
-
-    cout << "Change Account Holder's Name : ";
-    getline(cin, account_name);
-}
-
-void Account::depositAmount(float deposit_amount = 0)
+void Account::depositAmount()
 {
     float deposit_amount;
+
+    cout << "----------------------------------------------------------------------------------------------" << endl;
     cout << "Enter the Deposit Amount: ";
     cin >> deposit_amount;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
 
     balance += deposit_amount;
 }
 
-void Account::withdrawAmount(float withdraw_amount = 0)
+void Account::withdrawAmount()
 {
     float withdraw_amount;
+
+    cout << "----------------------------------------------------------------------------------------------" << endl;
     cout << "Enter the Withdrawal Amount: ";
     cin >> withdraw_amount;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
 
     balance -= withdraw_amount;
+}
+
+void Account::modifyAccountInfo()
+{
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+    cout << "Change Account Number (8 digits): ";
+    cin >> account_num;
+    cin.ignore();
+
+    cout << "\nChange Account Holder's Name : ";
+    getline(cin, account_name);
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+}
+
+void Account::displayAccountInfo() const
+{
+    cout << ' ' << account_num << setw(12) << " ";
+    cout << account_name << setw(16) << " ";
+    cout << balance << endl;
 }
 
 string Account::getAccountNo() const
@@ -81,6 +102,21 @@ string Account::getAccountNo() const
 float Account::getBalance() const
 {
     return balance;
+}
+
+bool Account::getStatus() const
+{
+    return status;
+}
+
+void Account::addTransactionAmount(float transaction_amount)
+{
+    balance += transaction_amount;
+}
+
+void Account::subTransactionAmount(float transaction_amount)
+{
+    balance -= transaction_amount;
 }
 
 Account accounts[50];

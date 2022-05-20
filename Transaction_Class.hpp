@@ -1,6 +1,7 @@
 #ifndef Transaction_Class_hpp
 #define Transaction_Class_hpp
 
+#include "Account_Class.hpp"
 #include <iostream>
 #include <ctime>
 using namespace std;
@@ -33,26 +34,28 @@ void Transaction::makeTransaction()
 {
     do
     {
+        cout << "----------------------------------------------------------------------------------------------" << endl;
         cout << "Please enter your Bank Account Number: ";
         cin >> sender_accnum;
 
-        cout << "Please enter the Receiver's  Bank Account Number: ";
+        cout << "\nPlease enter the Receiver's  Bank Account Number: ";
         cin >> receiver_accnum;
 
-        cout << "Please enter the Transaction Amount: ";
+        cout << "\nPlease enter the Transaction Amount: ";
         cin >> transaction_amount;
+        cout << "----------------------------------------------------------------------------------------------" << endl;
 
         transaction_amount = abs(transaction_amount);
 
         for (int i = 0; i < 50; i++)
         {
-            if (sender_accnum == user[i].getUserAccNo())
+            if (sender_accnum == accounts[i].getAccountNo())
             {
                 sender_index = i;
                 sender_cond = true;
             }
 
-            else if (receiver_accnum == user[i].getUserAccNo())
+            else if (receiver_accnum == accounts[i].getAccountNo())
             {
                 receiver_index = i;
                 receiver_cond = true;
@@ -91,13 +94,20 @@ void Transaction::makeTransaction()
             }
 
             cout << "Try Again!" << endl;
-            cout << "----------------------------------------------------------------------------------------------" << endl;
         }
 
     } while (sender_cond == false || receiver_cond == false);
 
-    user[receiver_index].addBalance(transaction_amount);
-    user[sender_index].subtractBalance(transaction_amount);
+    accounts[receiver_index].addTransactionAmount(transaction_amount);
+    accounts[sender_index].subTransactionAmount(transaction_amount);
+
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+    cout << "Transaction Successful!!!" << endl;
+    cout << "An amount of $" << transaction_amount << " successfully transferred to an account with Account Number: " << receiver_accnum << endl;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+    cout << "Your Bank Balance before Transaction: " << '$' << accounts[sender_index].getBalance() + transaction_amount << endl;
+    cout << "Your Bank Balance after Transaction: " << '$' << accounts[sender_index].getBalance() << endl;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
 
     // retrieving date & time of the transaction
     time_t dt = time(0);
@@ -110,9 +120,10 @@ void Transaction::makeTransaction()
         relevant_dt[i] = date_time[i];
     }
 
-    // storing only the time in the 'transaction_time' & the date in the 'transaction_date' variable from the char array
+    // seprating time & date from the char array and storing them in 'transaction_time' & 'transaction_date' variable respectively
     transaction_date = relevant_dt[0];
     transaction_time = relevant_dt[11];
+
     for (int i = 1; i < 24; i++)
     {
         if (i < 10 || i >= 19)
@@ -123,14 +134,6 @@ void Transaction::makeTransaction()
         else if (i > 11 && i < 19)
             transaction_time += relevant_dt[i];
     }
-
-    cout << "----------------------------------------------------------------------------------------------" << endl;
-    cout << "Transaction Successful!!!" << endl;
-    cout << "An amount of $" << transaction_amount << " successfully transferred to a user with Account Number: " << receiver_accnum << endl;
-    cout << "----------------------------------------------------------------------------------------------" << endl;
-    cout << "Your Bank Balance before Transaction: " << '$' << user[sender_index].getBalance() + transaction_amount << endl;
-    cout << "Your Bank Balance after Transaction: " << '$' << user[sender_index].getBalance() << endl;
-    cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
 void Transaction::showTransaction() const
