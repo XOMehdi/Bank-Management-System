@@ -16,20 +16,17 @@ private:
 public:
     Transaction();
     void makeTransaction();
-
-    // getter functions
-    float getTransactionAmount();
-    string getTransactionTime();
-    string getTransactionDate();
-    string getSenderAccNo();
-    string getReceiverAccNo();
+    void showTransaction();
+    bool getTransactionStatus();
 };
 
 Transaction::Transaction()
 {
     transaction_time = "None";
+    transaction_date = "None";
     sender_cond = false;
     receiver_cond = false;
+    transaction_amount = 0;
 }
 
 void Transaction::makeTransaction()
@@ -44,6 +41,8 @@ void Transaction::makeTransaction()
 
         cout << "Please enter the Transaction Amount: ";
         cin >> transaction_amount;
+
+        transaction_amount = abs(transaction_amount);
 
         for (int i = 0; i < 50; i++)
         {
@@ -134,29 +133,23 @@ void Transaction::makeTransaction()
     cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
-float Transaction::getTransactionAmount()
+void Transaction::showTransaction()
 {
-    return transaction_amount;
+    // printing data in a tabular form
+    cout << '|' << transaction_time << " ";
+    cout << transaction_date << " ---      ";
+    cout << sender_accnum << "       ---       ";
+    cout << transaction_amount << "         ---      ";
+    cout << receiver_accnum << "      |" << endl;
 }
 
-string Transaction::getTransactionTime()
+bool Transaction::getTransactionStatus()
 {
-    return transaction_time;
-}
+    if (sender_cond == true && receiver_cond == true)
+        return true;
 
-string Transaction::getTransactionDate()
-{
-    return transaction_date;
-}
-
-string Transaction::getSenderAccNo()
-{
-    return sender_accnum;
-}
-
-string Transaction::getReceiverAccNo()
-{
-    return receiver_accnum;
+    else
+        return false;
 }
 
 Transaction trans[5];

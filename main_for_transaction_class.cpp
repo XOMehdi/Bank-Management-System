@@ -5,7 +5,10 @@
 
 using namespace std;
 
+// member function to display all the transactions made by the users
 void displayTransactions();
+
+//                               'main function only to test the transaction class'
 
 int main()
 {
@@ -26,12 +29,11 @@ int main()
 void displayTransactions()
 {
     cout << "-------------------------------------------Transactions List-------------------------------------" << endl;
-    cout << "|Transaction Date & Time  --- Transferred By (AN) --- Transaction Amount --- Transferred To (AN)|" << endl;
+    cout << "|Transaction Time & Date   --- Transferred By (AN) --- Transaction Amount --- Transferred To (AN)|" << endl;
     for (int i = 0; i < 5; i++)
     {
-        if (trans[i].getTransactionTime() != "None")
-            cout << '|' << trans[i].getTransactionTime() << " " << trans[i].getTransactionDate() << " ---      " << trans[i].getSenderAccNo() << "       ---       "
-                 << trans[i].getTransactionAmount() << "         ---      " << trans[i].getReceiverAccNo() << "      |" << endl;
+        if (trans[i].getTransactionStatus() == true)
+            trans[i].showTransaction();
 
         else
             cout << "|                         ---                     ---                    ---                    |" << endl;
