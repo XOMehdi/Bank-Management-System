@@ -66,23 +66,32 @@ void Transaction::makeTransaction()
         {
             if (sender_cond == false && receiver_cond == true)
             {
+                cout << "----------------------------------------------------------------------------------------------" << endl;
                 cout << "Transaction Unsuccessful!!!" << endl;
-                cout << "A sender/user with the specified Account Number: " << sender_accnum << " cannot be located!";
+                cout << "No Account exists with the specified Account Number: " << sender_accnum << endl;
+                cout << "----------------------------------------------------------------------------------------------" << endl;
             }
 
             else if (sender_cond == true && receiver_cond == false)
             {
+                cout << "----------------------------------------------------------------------------------------------" << endl;
                 cout << "Transaction Unsuccessful!!!" << endl;
-                cout << "A receiver/user with the specified Account Number: " << receiver_accnum << " cannot be located!";
+                cout << "No Account exists with the specified Account Number: " << receiver_accnum << endl;
+                cout << "----------------------------------------------------------------------------------------------" << endl;
             }
 
             else if (sender_cond == false && receiver_cond == false)
             {
+                cout << "----------------------------------------------------------------------------------------------" << endl;
                 cout << "Transaction Unsuccessful!!!" << endl;
                 cout << "No Accounts exist with the specified Account Number: " << endl;
                 cout << sender_accnum << endl;
                 cout << receiver_accnum << endl;
+                cout << "----------------------------------------------------------------------------------------------" << endl;
             }
+
+            cout << "Try Again!" << endl;
+            cout << "----------------------------------------------------------------------------------------------" << endl;
         }
 
     } while (sender_cond == false || receiver_cond == false);
@@ -93,24 +102,27 @@ void Transaction::makeTransaction()
     time_t current_time = time(0);
     transaction_time = ctime(&current_time);
 
+    // a characters array to store only relevant characters from the 'transaction_time' string variable
     char relevant_time[24];
     for (int i = 0; i < 24; i++)
     {
         relevant_time[i] = transaction_time[i];
     }
 
+    // resetting the value of 'transaction_time' variable with correct info from the char array
     transaction_time = relevant_time[0];
     for (int i = 1; i < 24; i++)
     {
         transaction_time += relevant_time[i];
     }
 
-    cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
     cout << "Transaction Successful!!!" << endl;
     cout << "An amount of $" << transaction_amount << " successfully transferred to a user with Account Number: " << receiver_accnum << endl;
-    cout << "\nYour Bank Balance before Transaction: " << '$' << user[sender_index].getBalance() + transaction_amount << endl;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+    cout << "Your Bank Balance before Transaction: " << '$' << user[sender_index].getBalance() + transaction_amount << endl;
     cout << "Your Bank Balance after Transaction: " << '$' << user[sender_index].getBalance() << endl;
-    cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
 string Transaction::getTransactionTime()
