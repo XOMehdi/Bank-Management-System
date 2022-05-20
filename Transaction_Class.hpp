@@ -2,12 +2,13 @@
 #define Transaction_Class_hpp
 
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 class Transaction
 {
 private:
-    string sender_accnum, receiver_accnum;
+    string sender_accnum, receiver_accnum, transaction_time;
     float transaction_amount;
     int sender_index, receiver_index;
     bool sender_cond, receiver_cond; // variables to be assigned 'true' only if sender & receiver's account exist with the entered account number
@@ -15,36 +16,43 @@ private:
 public:
     Transaction();
     void makeTransaction();
+
+    // setter functions
+    string getTransactionTime();
+    float getTransactionAmount();
+    string getSenderAccNo();
+    string getReceiverAccNo();
 };
 
 Transaction::Transaction()
 {
+    transaction_time = "None";
     sender_cond = false;
     receiver_cond = false;
-
-    cout << "Please enter your Bank Account Number: ";
-    cin >> sender_accnum;
-
-    cout << "Please enter the Receiver's  Bank Account Number: ";
-    cin >> receiver_accnum;
-
-    cout << "Please enter the Transaction Amount: ";
-    cin >> transaction_amount;
 }
 
 void Transaction::makeTransaction()
 {
     do
     {
+        cout << "Please enter your Bank Account Number: ";
+        cin >> sender_accnum;
+
+        cout << "Please enter the Receiver's  Bank Account Number: ";
+        cin >> receiver_accnum;
+
+        cout << "Please enter the Transaction Amount: ";
+        cin >> transaction_amount;
+
         for (int i = 0; i < 50; i++)
         {
-            if (sender_accnum == user[i].get_Useraccountno())
+            if (sender_accnum == user[i].getUserAccountNo())
             {
                 sender_index = i;
                 sender_cond = true;
             }
 
-            else if (receiver_accnum == user[i].get_Useraccountno())
+            else if (receiver_accnum == user[i].getUserAccountNo())
             {
                 receiver_index = i;
                 receiver_cond = true;
@@ -54,26 +62,77 @@ void Transaction::makeTransaction()
                 break;
         }
 
-        if (sender_cond == false)
+        if (sender_cond == false || receiver_cond == false)
         {
-            cout << "Transaction Unsuccessful!!!" << endl;
-            cout << "A sender/user with the specified Account Number: " << sender_accnum << " cannot be located!";
+            if (sender_cond == false && receiver_cond == true)
+            {
+                cout << "Transaction Unsuccessful!!!" << endl;
+                cout << "A sender/user with the specified Account Number: " << sender_accnum << " cannot be located!";
+            }
+
+            else if (sender_cond == true && receiver_cond == false)
+            {
+                cout << "Transaction Unsuccessful!!!" << endl;
+                cout << "A receiver/user with the specified Account Number: " << receiver_accnum << " cannot be located!";
+            }
+
+            else if (sender_cond == false && receiver_cond == false)
+            {
+                cout << "Transaction Unsuccessful!!!" << endl;
+                cout << "No Accounts exist with the specified Account Number: " << endl;
+                cout << sender_accnum << endl;
+                cout << receiver_accnum << endl;
+            }
         }
 
-        else if (receiver_cond == false)
-        {
-            cout << "Transaction Unsuccessful!!!" << endl;
-            cout << "A receiver/user with the specified Account Number: " << receiver_accnum << " cannot be located!";
-        }
     } while (sender_cond == false || receiver_cond == false);
 
     user[receiver_index].addBalance(transaction_amount);
     user[sender_index].subtractBalance(transaction_amount);
 
+    time_t current_time = time(0);
+    transaction_time = ctime(&current_time);
+
+    char relevant_time[24];
+    for (int i = 0; i < 24; i++)
+    {
+        relevant_time[i] = transaction_time[i];
+    }
+
+    transaction_time = relevant_time[0];
+    for (int i = 1; i < 24; i++)
+    {
+        transaction_time += relevant_time[i];
+    }
+
+    cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
     cout << "Transaction Successful!!!" << endl;
     cout << "An amount of $" << transaction_amount << " successfully transferred to a user with Account Number: " << receiver_accnum << endl;
-    cout << "\nYour Bank Balance before transaction: " << '$' << user[sender_index].get_balance() + transaction_amount << endl;
-    cout << "Your Bank Balance after transaction: " << '$' << user[sender_index].get_balance();
+    cout << "\nYour Bank Balance before Transaction: " << '$' << user[sender_index].getBalance() + transaction_amount << endl;
+    cout << "Your Bank Balance after Transaction: " << '$' << user[sender_index].getBalance() << endl;
+    cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
 }
+
+string Transaction::getTransactionTime()
+{
+    return transaction_time;
+}
+
+float Transaction::getTransactionAmount()
+{
+    return transaction_amount;
+}
+
+string Transaction::getSenderAccNo()
+{
+    return sender_accnum;
+}
+
+string Transaction::getReceiverAccNo()
+{
+    return receiver_accnum;
+}
+
+Transaction trans[5];
 
 #endif /* Transaction_Class_hpp */
