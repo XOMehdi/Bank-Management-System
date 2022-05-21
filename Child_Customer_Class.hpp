@@ -30,6 +30,8 @@ public:
 
         cout << "\nHow many accounts do you have: ";
         cin >> no_of_accounts;
+
+        cout << "\nYou are now Registered as a Customer! ";
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
@@ -52,6 +54,7 @@ public:
 
         cout << "\nCNIC Number: " << cnic_number << endl;
         cout << "\nPhone Number: " << phone_number << endl;
+        cout << "\nCustomer ID: " << customer_id;
         cout << "\nNumber of Accounts: " << no_of_accounts;
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }

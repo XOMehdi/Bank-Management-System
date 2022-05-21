@@ -17,6 +17,9 @@ public:
     void displayHuman() const;
     void modifyHumanInfo();
     bool loginCheck(string) const;
+
+    // getter function
+    string getPin();
 };
 
 Human::Human()
@@ -71,6 +74,11 @@ bool Human::loginCheck(string pin) const
     {
         return false;
     }
+}
+
+string Human::getPin()
+{
+    return pin;
 }
 
 int Human::obj_count = 0;

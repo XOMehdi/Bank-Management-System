@@ -24,12 +24,16 @@ public:
     {
         Human::readHuman();
 
+        cout << "\nYou are now Registered as a Manager! ";
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
     void displayManager() const
     {
         Human::displayHuman();
+
+        cout << "\nManager ID: " << manager_id;
+        cout << "\nTotal number of Customers: " << no_of_customers;
 
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }
