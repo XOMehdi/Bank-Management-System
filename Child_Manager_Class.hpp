@@ -82,6 +82,6 @@ public:
     }
 };
 
-Manager managr[50];
+Manager managr[10];
 
 #endif /* Child_Manager_Class_hpp */

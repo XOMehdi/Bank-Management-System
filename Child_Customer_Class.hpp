@@ -11,7 +11,7 @@ class Customer : public Human
 {
 private:
     string customer_id, cnic_number, phone_number, acc_num;
-    static int no_of_accounts;
+    int no_of_accounts;
 
 public:
     Customer() : Human()
@@ -60,7 +60,7 @@ public:
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
-    string getCustomerID()
+    string getCustomerID() const
     {
         return customer_id;
     }
@@ -121,8 +121,6 @@ public:
         }
     }
 };
-
-int Customer::no_of_accounts = 0;
 
 Customer custmr[50];
 

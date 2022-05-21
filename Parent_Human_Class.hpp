@@ -19,8 +19,8 @@ public:
     bool loginCheck(string) const;
 
     // getter function
-    string getPin();
-    bool getStatus();
+    string getPin() const;
+    bool getStatus() const;
 };
 
 Human::Human()
@@ -79,12 +79,12 @@ bool Human::loginCheck(string pin) const
     }
 }
 
-string Human::getPin()
+string Human::getPin() const
 {
     return pin;
 }
 
-bool Human::getStatus()
+bool Human::getStatus() const
 {
     return status;
 }
