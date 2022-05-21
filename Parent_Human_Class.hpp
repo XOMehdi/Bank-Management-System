@@ -20,10 +20,13 @@ public:
 
     // getter function
     string getPin();
+    bool getStatus();
 };
 
 Human::Human()
 {
+    full_name = "  ";
+    pin = "  ";
     obj_count++;
     status = false;
 }
@@ -79,6 +82,11 @@ bool Human::loginCheck(string pin) const
 string Human::getPin()
 {
     return pin;
+}
+
+bool Human::getStatus()
+{
+    return status;
 }
 
 int Human::obj_count = 0;

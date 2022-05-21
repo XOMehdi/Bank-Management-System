@@ -21,6 +21,7 @@ public:
     void modifyAccountInfo();
     void depositAmount();
     void withdrawAmount();
+    void deleteAccount();
 
     // getter functions
     string getAccountNo() const;
@@ -37,14 +38,14 @@ void Account::readAccount()
     status = true;
 
     cout << "----------------------------------------------------------------------------------------------" << endl;
-    cout << "Enter the Account Number (8 digits): ";
+    cout << "Please set an Account Number (8 digits): ";
     cin >> account_num;
     cin.ignore();
 
-    cout << "\nEnter the Name of The Account Holder: ";
+    cout << "\nPlease set a Name of The Account Holder: ";
     getline(cin, account_name);
 
-    cout << "\nEnter The Amount to be added to the Account Balance : ";
+    cout << "\nPlease enter an Amount to be added to the Account Balance : ";
     cin >> balance;
 
     cout << "\nAccount Created!" << endl;
@@ -117,6 +118,14 @@ void Account::addTransactionAmount(float transaction_amount)
 void Account::subTransactionAmount(float transaction_amount)
 {
     balance -= transaction_amount;
+}
+
+void Account::deleteAccount()
+{
+    account_num = "  ";
+    account_name = "  ";
+    balance = 0;
+    status = false;
 }
 
 Account accounts[50];

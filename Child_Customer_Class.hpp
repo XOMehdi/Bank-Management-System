@@ -2,6 +2,7 @@
 #define Child_Customer_Class_hpp
 
 #include "Parent_Human_Class.hpp"
+#include "Account_Class.hpp"
 #include <iostream>
 
 using namespace std;
@@ -9,13 +10,16 @@ using namespace std;
 class Customer : public Human
 {
 private:
-    string customer_id, cnic_number, phone_number;
-    int no_of_accounts;
+    string customer_id, cnic_number, phone_number, acc_num;
+    static int no_of_accounts;
 
 public:
     Customer() : Human()
     {
-        customer_id = "BankCustomer" + to_string(obj_count);
+        customer_id = "BkCustmr" + to_string(obj_count);
+        cnic_number = "  ";
+        phone_number = "  ";
+        no_of_accounts = 0;
     }
 
     void readCustomer()
@@ -28,17 +32,14 @@ public:
         cout << "\nPlease enter your Phone Number: ";
         cin >> phone_number;
 
-        cout << "\nHow many accounts do you have: ";
-        cin >> no_of_accounts;
-
-        cout << "\nYou are now Registered as a Customer! ";
+        cout << "\nA Customer with the Customer ID: " << customer_id << " has been created!";
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
     void modifyCustomerInfo()
     {
-        cout << "Your ID cannot be changed! " << endl;
-        cout << "\nYour Customer ID is: " << customer_id << endl;
+        cout << "Customer ID cannot be changed! " << endl;
+        cout << "\nCustomer ID: " << customer_id << endl;
 
         Human::modifyHumanInfo();
 
@@ -58,7 +59,70 @@ public:
         cout << "\nNumber of Accounts: " << no_of_accounts;
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }
+
+    string getCustomerID()
+    {
+        return customer_id;
+    }
+
+    void deleteCustomer()
+    {
+        full_name = "  ";
+        pin = "  ";
+        obj_count--;
+        status = false;
+        customer_id = "  ";
+        cnic_number = "  ";
+        phone_number = "  ";
+        no_of_accounts = 0;
+    }
+
+    void openAccount()
+    {
+        no_of_accounts++;
+        for (int i = 0; i < 50; i++)
+        {
+            if (accounts[i].getStatus() == false)
+            {
+                accounts[i].readAccount();
+
+                cout << "|Account Number --- Account Holder Name --- Account Balance|" << endl;
+                accounts[i].displayAccountInfo();
+            }
+        }
+    }
+
+    void closeAccount()
+    {
+        cout << "Enter the Account Number: ";
+        cin >> acc_num;
+
+        for (int i = 0; i < 50; i++)
+        {
+            if (acc_num == accounts[i].getAccountNo())
+            {
+                accounts[i].deleteAccount();
+                cout << "\nAccount is Successfully Closed!";
+            }
+        }
+    }
+
+    void editAccount()
+    {
+        cout << "Enter the Account Number: ";
+        cin >> acc_num;
+
+        for (int i = 0; i < 50; i++)
+        {
+            if (acc_num == accounts[i].getAccountNo())
+            {
+                accounts[i].modifyAccountInfo();
+            }
+        }
+    }
 };
+
+int Customer::no_of_accounts = 0;
 
 Customer custmr[50];
 

@@ -10,13 +10,13 @@ using namespace std;
 class Manager : public Human
 {
 private:
-    string manager_id;
+    string manager_id, cust_id;
     int no_of_customers;
 
 public:
     Manager() : Human()
     {
-        manager_id = "BankManger" + to_string(obj_count);
+        manager_id = "BkManger" + to_string(obj_count);
         no_of_customers = Customer::obj_count;
     }
 
@@ -24,7 +24,7 @@ public:
     {
         Human::readHuman();
 
-        cout << "\nYou are now Registered as a Manager! ";
+        cout << "\nYou are now Registered as a Manager with the Manager ID: " << manager_id;
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
@@ -36,6 +36,49 @@ public:
         cout << "\nTotal number of Customers: " << no_of_customers;
 
         cout << "----------------------------------------------------------------------------------------------" << endl;
+    }
+
+    void addCustomer()
+    {
+        for (int i = 0; i < 50; i++)
+        {
+            if (custmr[i].getStatus() == false)
+            {
+                custmr[i].readCustomer();
+            }
+        }
+    }
+
+    void removeCustomer()
+    {
+        cout << "Enter the Customer's ID: ";
+        cin >> cust_id;
+
+        for (int i = 0; i < 50; i++)
+        {
+            if (cust_id == custmr[i].getCustomerID())
+            {
+                custmr[i].deleteCustomer();
+                cout << "\nCustomer is Successfully Removed!";
+            }
+        }
+    }
+
+    void editCustomer()
+    {
+        for (int i = 0; i < 50; i++)
+        {
+            if (cust_id == custmr[i].getCustomerID())
+            {
+                custmr[i].modifyCustomerInfo();
+            }
+        }
+    }
+
+    void showCustomer()
+    {
+        for (int i = 0; i < 50; i++)
+            custmr[i].displayCustomer();
     }
 };
 
