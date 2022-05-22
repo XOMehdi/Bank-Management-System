@@ -113,34 +113,6 @@ void manager_data()
 	}
 	}
 }
-	void transaction_plan()
-	{
-		cout << "\n\n\t\t\t\tmanager  \n";
-		cout << "\t\t\t|------------------------------------|" << endl;
-		cout << "\t\t\t|  1. Make transaction               |" << endl;
-		cout << "\t\t\t|  2. Get transaction                |" << endl;
-		cout << "\t\t\t|  2. show transaction               |" << endl;
-		cout << "\t\t\t|------------------------------------|" << endl;
-		int Customer_oper;
-		switch (Customer_oper)
-		{
-		case 1:
-		{
-			makeTransaction();
-			break;
-		}
-		case 2:
-		{
-			getTransactionStatus();
-			break;
-		}
-		case 3:
-		{
-			showTransaction();
-			break;
-		}
-		}
-	}
 	
 void amount_setting(){
 	cout << "\n\n\t\t\t\tAmount operations  \n";
