@@ -1,0 +1,219 @@
+#include "Parent_Human_Class.hpp"
+#include "Child_Manager_Class.hpp"
+#include "Child_Customer_Class.hpp"
+#include "Account_Class.hpp"
+#include "Transaction_Class.hpp"
+
+#include <iostream>
+using namespace std;
+
+void customer_data()
+{
+	cout << "\n\n\t\t\t\tcustomer info \n";
+	cout << "\t\t\t|------------------------------------|" << endl;
+	cout << "\t\t\t|  1. Add Customer                   |" << endl;
+	cout << "\t\t\t|  2. Remove customer                |" << endl;
+	cout << "\t\t\t|  3. Edit customer                  |" << endl;
+	cout << "\t\t\t|  4. Show Customer                  |" << endl;
+	cout << "\t\t\t|------------------------------------|" << endl;
+	int Customer_oper;
+	switch (Customer_oper)
+	{
+	case 1:
+	{
+		for (int i = 0; i < 30; i++)
+		{
+			if (custmr[i].getStatus() == false)
+			{
+				custmr[i].readCustomer();
+				break;
+			}
+		}
+		break;
+	}
+
+	case 2:
+	{
+		for (int i = 0; i < 30; i++)
+		{
+			if (custmr[i].getStatus() == true)
+			{
+				custmr[i].deleteCustomer();
+				break;
+			}
+		}
+		break;
+	}
+
+	case 3:
+	{
+		for (int i = 0; i < 30; i++)
+		{
+			if (custmr[i].getStatus() == true)
+			{
+				custmr[i].modifyCustomerInfo();
+				break;
+			}
+		}
+		break;
+	}
+
+	case 4:
+	{
+		for (int i = 0; i < 30; i++)
+		{
+			if (custmr[i].getStatus() == true)
+			{
+				custmr[i].displayCustomer();
+				break;
+			}
+		}
+		break;
+	}
+	}
+}
+
+void manager_data()
+{
+	cout << "\n\n\t\t\t\tmanager  \n";
+	cout << "\t\t\t|------------------------------------|" << endl;
+	cout << "\t\t\t|  1. Read manager                   |" << endl;
+	cout << "\t\t\t|  2. Display  manager               |" << endl;
+	cout << "\t\t\t|------------------------------------|" << endl;
+	int Customer_oper;
+	switch (Customer_oper)
+	{
+	case 1:
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			if (managr[i].getStatus() == false)
+			{
+				managr[i].readManager();
+				break;
+			}
+		}
+		break;
+	}
+	case 2:
+	{
+		string pp;
+		cout << "Enter your Pin: ";
+		cin >> pp;
+
+		for (int i = 0; i < 10; i++)
+		{
+			if (pp == managr[i].getPin)
+			{
+				managr[i].displayManager();
+				break;
+			}
+		}
+		break;
+	}
+	}
+
+	void transaction plan()
+	{
+		cout << "\n\n\t\t\t\tmanager  \n";
+		cout << "\t\t\t|------------------------------------|" << endl;
+		cout << "\t\t\t|  1. Make transaction               |" << endl;
+		cout << "\t\t\t|  2. Get transaction                |" << endl;
+		cout << "\t\t\t|  2. show transaction               |" << endl;
+		cout << "\t\t\t|------------------------------------|" << endl;
+		int Customer_oper;
+		switch (Customer_oper)
+		{
+		case 1:
+		{
+			makeTransaction();
+			break;
+		}
+		case 2:
+		{
+			getTransactionStatus();
+			break;
+		}
+		case 3:
+		{
+			showTransaction();
+			break;
+		}
+		}
+	}
+}
+}
+int main()
+{
+	cout << "|------------------------------------|" << endl;
+	cout << "|                                    |" << endl;
+	cout << "|         Welcome to the             |" << endl;
+	cout << "|              Bank                  |" << endl;
+	cout << "|           Management               |" << endl;
+	cout << "|             System                 |" << endl;
+	cout << "|                                    |" << endl;
+	cout << "|------------------------------------|" << endl;
+
+	cout << "\t\t\t----------------------------------------------------";
+	cout << "\n\t\t\t\t\tBANK MANAGEMENT SYSYTEM" << endl;
+	cout << "\t\t\t----------------------------------------------------\n\n";
+
+	cout << "\t\t\tLog in as" << endl
+		 << "\t\t\t  ------------------"
+		 << "\t-----------------" << endl
+		 << "\t\t\t  |  1 = Customer  |"
+		 << " or"
+		 << "\t|  2 = Manager  |" << endl
+		 << "\t\t\t  ------------------"
+		 << "\t-----------------" << endl;
+
+	int logIn;
+	cout << "\t\t\t\tEnter 1 or 2 = ";
+	cin >> logIn;
+
+	switch (logIn)
+	{
+	case 1:
+	{
+		cout << "\n\n\t\t\t\tWellcome Manager \n";
+		cout << "\t\t\t|------------------------------------|" << endl;
+		cout << "\t\t\t|  operation on :                    |" << endl;
+		cout << "\t\t\t|                                    |" << endl;
+		cout << "\t\t\t|       1. Manager                   |" << endl;
+		cout << "\t\t\t|       2. Customer                  |" << endl;
+		cout << "\t\t\t|       3. Transaction               |" << endl;
+		cout << "\t\t\t|                                    |" << endl;
+		cout << "\t\t\t|------------------------------------|" << endl;
+
+		int choiceM;
+		cout << "\t\t\t Enter = ";
+		cin >> choiceM;
+		switch (choiceM)
+		{
+		case 1:
+		{
+			manager_data();
+			break;
+		}
+		case 2:
+		{
+			customer_data();
+			break;
+		}
+		case 3:
+		{
+			transaction plan();
+			break;
+		}
+		}
+
+		break;
+	}
+	case 2:
+	{
+		cout << "\n\n\t\t\t\tWellcome customer";
+		break;
+	}
+	}
+	return 0;
+}
