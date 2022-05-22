@@ -17,7 +17,6 @@ private:
 public:
     Customer() : Human()
     {
-        customer_id = "BkCustmr" + to_string(custmr_count);
         cnic_number = "  ";
         phone_number = "  ";
         no_of_accounts = 0;
@@ -26,7 +25,10 @@ public:
     void readCustomer()
     {
         custmr_count++;
+
         Human::readHuman();
+
+        customer_id = "BkCustmr" + to_string(custmr_count);
 
         cout << "\nPlease enter your CNIC Number: ";
         cin >> cnic_number;

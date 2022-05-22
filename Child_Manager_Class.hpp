@@ -17,14 +17,16 @@ private:
 public:
     Manager() : Human()
     {
-        manager_count++;
-        manager_id = "BkManagr" + to_string(manager_count);
         no_of_customers = Customer::customerCount();
     }
 
     void readManager()
     {
+        manager_count++;
+
         Human::readHuman();
+
+        manager_id = "BkManagr" + to_string(manager_count);
 
         cout << "\nYou are now Registered as a Manager with the Manager ID: " << manager_id;
         cout << "\n----------------------------------------------------------------------------------------------" << endl;

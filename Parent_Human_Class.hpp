@@ -39,7 +39,7 @@ void Human::readHuman()
     cout << "Please enter your Full Name: ";
     getline(cin, full_name);
 
-    cout << "Please set your Pin/Password (4 digits): ";
+    cout << "\nPlease set your Pin/Password (4 digits): ";
     cin >> pin;
 }
 
