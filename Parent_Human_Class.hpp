@@ -8,7 +8,6 @@ class Human
 {
 protected:
     string full_name, pin;
-    static int obj_count;
     bool status;
 
 public:
@@ -16,18 +15,17 @@ public:
     void readHuman();
     void displayHuman() const;
     void modifyHumanInfo();
-    bool loginCheck(string) const;
 
     // getter function
     string getPin() const;
     bool getStatus() const;
+    string getName() const;
 };
 
 Human::Human()
 {
     full_name = "  ";
     pin = "  ";
-    obj_count++;
     status = false;
 }
 
@@ -40,7 +38,6 @@ void Human::readHuman()
 
     cout << "Please enter your Full Name: ";
     getline(cin, full_name);
-    cin.ignore();
 
     cout << "Please set your Pin/Password (4 digits): ";
     cin >> pin;
@@ -53,7 +50,6 @@ void Human::modifyHumanInfo()
 
     cout << "\nChange your Full Name: ";
     getline(cin, full_name);
-    cin.ignore();
 
     cout << "\nChange Pin/Password (4 digits): ";
     cin >> pin;
@@ -66,19 +62,6 @@ void Human::displayHuman() const
     cout << "\nPin: " << pin << endl;
 }
 
-bool Human::loginCheck(string pin) const
-{
-    if (this->pin == pin)
-    {
-        return true;
-    }
-
-    else
-    {
-        return false;
-    }
-}
-
 string Human::getPin() const
 {
     return pin;
@@ -89,6 +72,9 @@ bool Human::getStatus() const
     return status;
 }
 
-int Human::obj_count = 0;
+string Human::getName() const
+{
+    return full_name;
+}
 
 #endif /* Parent_Human_Class */

@@ -128,6 +128,6 @@ void Account::deleteAccount()
     status = false;
 }
 
-Account accounts[50];
+Account accounts[25];
 
 #endif /* Account_Class_hpp */

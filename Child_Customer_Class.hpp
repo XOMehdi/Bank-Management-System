@@ -12,11 +12,12 @@ class Customer : public Human
 private:
     string customer_id, cnic_number, phone_number, acc_num;
     int no_of_accounts;
+    static int custmr_count;
 
 public:
     Customer() : Human()
     {
-        customer_id = "BkCustmr" + to_string(obj_count);
+        customer_id = "BkCustmr" + to_string(custmr_count);
         cnic_number = "  ";
         phone_number = "  ";
         no_of_accounts = 0;
@@ -24,6 +25,7 @@ public:
 
     void readCustomer()
     {
+        custmr_count++;
         Human::readHuman();
 
         cout << "\nPlease enter your CNIC Number: ";
@@ -69,7 +71,7 @@ public:
     {
         full_name = "  ";
         pin = "  ";
-        obj_count--;
+        custmr_count--;
         status = false;
         customer_id = "  ";
         cnic_number = "  ";
@@ -80,7 +82,7 @@ public:
     void openAccount()
     {
         no_of_accounts++;
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 25; i++)
         {
             if (accounts[i].getStatus() == false)
             {
@@ -97,7 +99,7 @@ public:
         cout << "Enter the Account Number: ";
         cin >> acc_num;
 
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 25; i++)
         {
             if (acc_num == accounts[i].getAccountNo())
             {
@@ -112,7 +114,7 @@ public:
         cout << "Enter the Account Number: ";
         cin >> acc_num;
 
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 25; i++)
         {
             if (acc_num == accounts[i].getAccountNo())
             {
@@ -120,8 +122,14 @@ public:
             }
         }
     }
-};
 
-Customer custmr[50];
+    static int customerCount()
+    {
+        return custmr_count;
+    }
+};
+int Customer::custmr_count = 0;
+
+Customer custmr[20];
 
 #endif /* Child_Customer_Class_hpp */

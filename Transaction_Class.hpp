@@ -35,10 +35,10 @@ void Transaction::makeTransaction()
     do
     {
         cout << "----------------------------------------------------------------------------------------------" << endl;
-        cout << "Please enter your Bank Account Number: ";
+        cout << "Please enter your Bank Account Number (8 digits): ";
         cin >> sender_accnum;
 
-        cout << "\nPlease enter the Receiver's  Bank Account Number: ";
+        cout << "\nPlease enter the Receiver's  Bank Account Number (8 digits): ";
         cin >> receiver_accnum;
 
         cout << "\nPlease enter the Transaction Amount: ";
@@ -155,6 +155,6 @@ bool Transaction::getTransactionStatus() const
         return false;
 }
 
-Transaction trans[5];
+Transaction trans[30];
 
 #endif /* Transaction_Class_hpp */

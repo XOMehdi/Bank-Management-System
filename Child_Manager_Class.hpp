@@ -12,12 +12,14 @@ class Manager : public Human
 private:
     string manager_id, cust_id;
     int no_of_customers;
+    static int manager_count;
 
 public:
     Manager() : Human()
     {
-        manager_id = "BkManger" + to_string(obj_count);
-        no_of_customers = Customer::obj_count;
+        manager_count++;
+        manager_id = "BkManagr" + to_string(manager_count);
+        no_of_customers = Customer::customerCount();
     }
 
     void readManager()
@@ -25,7 +27,7 @@ public:
         Human::readHuman();
 
         cout << "\nYou are now Registered as a Manager with the Manager ID: " << manager_id;
-        cout << "----------------------------------------------------------------------------------------------" << endl;
+        cout << "\n----------------------------------------------------------------------------------------------" << endl;
     }
 
     void displayManager() const
@@ -35,12 +37,22 @@ public:
         cout << "\nManager ID: " << manager_id;
         cout << "\nTotal number of Customers: " << no_of_customers;
 
-        cout << "----------------------------------------------------------------------------------------------" << endl;
+        cout << "\n----------------------------------------------------------------------------------------------" << endl;
+    }
+
+    void modifyManagerInfo()
+    {
+        cout << "Manager ID cannot be changed! " << endl;
+        cout << "\nManager ID: " << manager_id << endl;
+
+        Human::modifyHumanInfo();
+
+        cout << "\n----------------------------------------------------------------------------------------------" << endl;
     }
 
     void addCustomer()
     {
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 20; i++)
         {
             if (custmr[i].getStatus() == false)
             {
@@ -54,7 +66,7 @@ public:
         cout << "Enter the Customer's ID: ";
         cin >> cust_id;
 
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 20; i++)
         {
             if (cust_id == custmr[i].getCustomerID())
             {
@@ -66,7 +78,7 @@ public:
 
     void editCustomer()
     {
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 20; i++)
         {
             if (cust_id == custmr[i].getCustomerID())
             {
@@ -77,10 +89,12 @@ public:
 
     void showCustomer()
     {
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 20; i++)
             custmr[i].displayCustomer();
     }
 };
+
+int Manager::manager_count = 0;
 
 Manager managr[10];
 
