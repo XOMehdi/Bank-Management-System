@@ -14,6 +14,8 @@ Total 20 customers
 Total 25 accounts
 Total 30 transactions
 */
+
+// instead make changes inside respective functions
 int mangr_signup_count = 0, custmr_signup_count = 0;
 
 //            ----------------------------MAIN FUNCTIONS PROTOTYPES-----------------------
@@ -30,7 +32,7 @@ void customerOptions(string);
 void accountOptions(int);
 void accountOperations();
 
-void viewTransactions();
+void viewAllTransactions();
 void viewAllAccountsInfo();
 
 //           ------------------------------------------------------------------------
@@ -352,7 +354,7 @@ void managerOptions(string managr_pin)
 				break;
 
 			case 4:
-				viewTransactions();
+				viewAllTransactions();
 				break;
 
 			default:
@@ -364,27 +366,16 @@ void managerOptions(string managr_pin)
 }
 //           ------------------------------------------------------------------------
 
-//            ----------------------------ADVANCED ACCOUNT OPTIONS FOR CUSTOMER FUNCTION-----------------------
+//            ----------------------------ADVANCED ACCOUNT OPTIONS FUNCTION-----------------------
 void accountOperations()
 {
-	for (int i = 0; i < 25; i++)
-	{
-		if (accounts[i].getStatus() == false)
-		{
-			accounts[i].readAccount();
-
-			cout << "|Account Number --- Account Holder Name --- Account Balance|" << endl;
-			accounts[i].displayAccountInfo();
-			break;
-		}
-	}
 
 	cout << "\n\n\t\t\t\tAdvanced Account Operations \n";
-	cout << "\t\t\t|------------------------------------|" << endl;
-	cout << "\t\t\t|  Choose an Option:                 |" << endl;
-	cout << "\t\t\t|  1. Deposit Amount                 |" << endl;
-	cout << "\t\t\t|  2. Withdraw Amount                |" << endl;
-	cout << "\t\t\t|------------------------------------|" << endl;
+	cout << "\t\t\t|------------------------------------" << endl;
+	cout << "\t\t\t| Choose an Option:                  " << endl;
+	cout << "\t\t\t|     1. Deposit Amount              " << endl;
+	cout << "\t\t\t|     2. Withdraw Amount             " << endl;
+	cout << "\t\t\t|------------------------------------" << endl;
 
 	string acnum;
 	int key;
@@ -438,10 +429,10 @@ void accountOptions(int index)
 	cout << "\n\n\t\t\t\tAccount Options\n";
 	cout << "\t\t\t|------------------------------------" << endl;
 	cout << "\t\t\t|  Choose an Option:                 " << endl;
-	cout << "\t\t\t|  1. Open an Account                " << endl;
-	cout << "\t\t\t|  2. Edit Account Info              " << endl;
-	cout << "\t\t\t|  3. Display Account Info           " << endl;
-	cout << "\t\t\t|  4. Close an Account               " << endl;
+	cout << "\t\t\t|  	  1. Open an Account            " << endl;
+	cout << "\t\t\t|  	  2. Edit Account Info          " << endl;
+	cout << "\t\t\t|  	  3. Display Account Info       " << endl;
+	cout << "\t\t\t|  	  4. Close an Account           " << endl;
 	cout << "\t\t\t|------------------------------------" << endl;
 
 	int account_oper;
@@ -452,6 +443,7 @@ void accountOptions(int index)
 	switch (account_oper)
 	{
 	case 1:
+		custmr[index].openAccount();
 		accountOperations();
 		break;
 
@@ -486,7 +478,7 @@ void customerOptions(string cust_pin)
 			cout << "\t\t\t|       2. Edit Personal Info        " << endl;
 			cout << "\t\t\t|       3. Delete Customer           " << endl;
 			cout << "\t\t\t|       4. Account Options           " << endl;
-			cout << "\t\t\t|       5. Make a Transaction        " << endl;
+			cout << "\t\t\t|       5. Transaction Options       " << endl;
 			cout << "\t\t\t|------------------------------------" << endl;
 
 			int cust_opt;
@@ -514,17 +506,18 @@ void customerOptions(string cust_pin)
 				break;
 
 			case 5:
-			{
-				for (int i = 0; i < 30; i++)
+				// make separate transaction function
 				{
-					if (trans[i].getTransactionStatus() == false)
+					for (int i = 0; i < 30; i++)
 					{
-						trans[i].makeTransaction();
-						break;
+						if (trans[i].getTransactionStatus() == false)
+						{
+							trans[i].makeTransaction();
+							break;
+						}
 					}
+					break;
 				}
-				break;
-			}
 
 			default:
 				cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
@@ -537,7 +530,7 @@ void customerOptions(string cust_pin)
 //           ------------------------------------------------------------------------
 
 //            ----------------------------VIEW FUNCTIONS FOR MANAGERS-----------------------
-void viewTransactions()
+void viewAllTransactions()
 {
 	cout << "---------------------------------------------Transactions List----------------------------------------------------" << endl;
 	cout << "|Transaction Time --- Transaction Date --- Transferred By (AN) --- Transferred To (AN) --- Transaction Amount|" << endl;

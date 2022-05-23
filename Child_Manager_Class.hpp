@@ -28,30 +28,30 @@ public:
 
         manager_id = "BkManagr" + to_string(manager_count);
 
-        cout << "\nYou are now Registered as a Manager with the Manager ID: " << manager_id;
-        cout << "\n----------------------------------------------------------------------------------------------" << endl;
+        cout << "\nYou are now Registered as a Manager with the Manager ID: " << manager_id << endl;
+        cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
     void displayManager() const
     {
         Human::displayHuman();
 
-        cout << "\nManager ID: " << manager_id;
-        cout << "\nTotal number of Customers: " << no_of_customers;
-
-        cout << "\n----------------------------------------------------------------------------------------------" << endl;
+        cout << "\nManager ID: " << manager_id << endl;
+        cout << "\nTotal number of Customers: " << no_of_customers << endl;
+        cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
     void modifyManagerInfo()
     {
         cout << "Manager ID cannot be changed! " << endl;
-        cout << "\nManager ID: " << manager_id << endl;
+        cout << "Manager ID: " << manager_id << endl;
 
         Human::modifyHumanInfo();
 
-        cout << "\n----------------------------------------------------------------------------------------------" << endl;
+        cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
+    // functions for integration of customer class
     void showCustomer()
     {
         cout << "Enter the Customer's ID: ";

@@ -36,14 +36,14 @@ public:
         cout << "\nPlease enter your Phone Number: ";
         cin >> phone_number;
 
-        cout << "\nA Customer with the Customer ID: " << customer_id << " has been created!";
+        cout << "\nA Customer with the Customer ID: " << customer_id << " has been created!" << endl;
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
     void modifyCustomerInfo()
     {
         cout << "Customer ID cannot be changed! " << endl;
-        cout << "\nCustomer ID: " << customer_id << endl;
+        cout << "Customer ID: " << customer_id << endl;
 
         Human::modifyHumanInfo();
 
@@ -59,8 +59,8 @@ public:
 
         cout << "\nCNIC Number: " << cnic_number << endl;
         cout << "\nPhone Number: " << phone_number << endl;
-        cout << "\nCustomer ID: " << customer_id;
-        cout << "\nNumber of Accounts: " << no_of_accounts;
+        cout << "\nCustomer ID: " << customer_id << endl;
+        cout << "\nNumber of Accounts: " << no_of_accounts << endl;
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
@@ -81,14 +81,15 @@ public:
         no_of_accounts = 0;
     }
 
+    // functions for integration of account class
     void openAccount()
     {
-        no_of_accounts++;
         for (int i = 0; i < 25; i++)
         {
             if (accounts[i].getStatus() == false)
             {
                 accounts[i].readAccount();
+                no_of_accounts++;
                 break;
             }
         }
