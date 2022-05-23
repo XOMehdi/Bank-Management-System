@@ -52,13 +52,30 @@ public:
         cout << "\n----------------------------------------------------------------------------------------------" << endl;
     }
 
-    void addCustomer()
+    void showCustomer()
     {
+        cout << "Enter the Customer's ID: ";
+        cin >> cust_id;
+
         for (int i = 0; i < 20; i++)
         {
-            if (custmr[i].getStatus() == false)
+            if (cust_id == custmr[i].getCustomerID())
             {
-                custmr[i].readCustomer();
+                custmr[i].displayCustomer();
+            }
+        }
+    }
+
+    void editCustomer()
+    {
+        cout << "Enter the Customer's ID: ";
+        cin >> cust_id;
+
+        for (int i = 0; i < 20; i++)
+        {
+            if (cust_id == custmr[i].getCustomerID())
+            {
+                custmr[i].modifyCustomerInfo();
             }
         }
     }
@@ -78,21 +95,13 @@ public:
         }
     }
 
-    void editCustomer()
+    void showAllCustomers()
     {
         for (int i = 0; i < 20; i++)
         {
-            if (cust_id == custmr[i].getCustomerID())
-            {
-                custmr[i].modifyCustomerInfo();
-            }
+            if (custmr[i].getStatus() == true)
+                custmr[i].displayCustomer();
         }
-    }
-
-    void showCustomer()
-    {
-        for (int i = 0; i < 20; i++)
-            custmr[i].displayCustomer();
     }
 };
 

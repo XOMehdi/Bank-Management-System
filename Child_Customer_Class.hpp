@@ -89,9 +89,7 @@ public:
             if (accounts[i].getStatus() == false)
             {
                 accounts[i].readAccount();
-
-                cout << "|Account Number --- Account Holder Name --- Account Balance|" << endl;
-                accounts[i].displayAccountInfo();
+                break;
             }
         }
     }
@@ -121,6 +119,27 @@ public:
             if (acc_num == accounts[i].getAccountNo())
             {
                 accounts[i].modifyAccountInfo();
+            }
+        }
+    }
+
+    void viewAccounts()
+    {
+        for (int i = 0; i < no_of_accounts; i++)
+        {
+            cout << "Enter Your Account Number " << i + 1 << ": ";
+            cin >> acc_num;
+
+            for (int i = 0; i < 25; i++)
+            {
+                if (acc_num == accounts[i].getAccountNo())
+                {
+                    if (no_of_accounts == 1)
+                    {
+                        cout << "|Account Number --- Account Holder Name --- Account Balance|" << endl;
+                    }
+                    accounts[i].displayAccountInfo();
+                }
             }
         }
     }
