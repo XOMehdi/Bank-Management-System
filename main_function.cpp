@@ -15,8 +15,11 @@ Total 25 accounts
 Total 30 transactions
 */
 
-// instead make changes inside respective functions
+// instead make changes inside respective functions?
 int mangr_signup_count = 0, custmr_signup_count = 0;
+
+// make counts for transaction and accounts for efficient code (for loops)
+// accounts and transaction optimization still pending
 
 //            ----------------------------MAIN FUNCTIONS PROTOTYPES-----------------------
 
@@ -70,7 +73,7 @@ int main()
 				cout << "\t\t\t|  Sign Up As:                       " << endl;
 				cout << "\t\t\t|       1. Manager         			" << endl;
 				cout << "\t\t\t|       2. Customer                  " << endl;
-				cout << "\t\t\t|       3. Exit Menu          		" << endl;
+				cout << "\t\t\t|       3. Exit This Menu            " << endl;
 				cout << "\t\t\t|------------------------------------" << endl;
 
 				cout << "\t\t\t\tEnter a number: ";
@@ -137,9 +140,9 @@ int main()
 			{
 				cout << "\t\t\t|------------------------------------" << endl;
 				cout << "\t\t\t|  Log In As:                        " << endl;
-				cout << "\t\t\t|   1. Manager         			    " << endl;
-				cout << "\t\t\t|   2. Customer                      " << endl;
-				cout << "\t\t\t|   3. Exit Menu          		    " << endl;
+				cout << "\t\t\t|       1. Manager         			" << endl;
+				cout << "\t\t\t|       2. Customer                  " << endl;
+				cout << "\t\t\t|       3. Exit This Menu            " << endl;
 				cout << "\t\t\t|------------------------------------" << endl;
 
 				cout << "\t\t\t\tEnter a number: ";
@@ -250,279 +253,330 @@ void createCustomer()
 //            ----------------------------CUSTOMER OPTIONS FOR MANAGER FUNCTION-----------------------
 void managerOptionsCustomer(int index)
 {
-	cout << "\n\n\t\t\t\tCustomer Options for Manager\n";
-	cout << "\t\t\t|------------------------------------" << endl;
-	cout << "\t\t\t| Choose an Option:                  " << endl;
-	cout << "\t\t\t|  1. View a Customer                " << endl;
-	cout << "\t\t\t|  2. Edit a Customer                " << endl;
-	cout << "\t\t\t|  3. Remove a Customer              " << endl;
-	cout << "\t\t\t|  4. Show All Customers             " << endl;
-	cout << "\t\t\t|------------------------------------" << endl;
-
 	int choice;
-	cout << "\t\t\t\tEnter a number: ";
-	cin >> choice;
-
-	switch (choice)
+	do
 	{
-	case 1:
-		managr[index].showCustomer();
-		break;
+		cout << "\n\n\t\t\t\tCustomer Options for Manager\n";
+		cout << "\t\t\t|------------------------------------" << endl;
+		cout << "\t\t\t| Choose an Option:                  " << endl;
+		cout << "\t\t\t|     1. View a Customer             " << endl;
+		cout << "\t\t\t|     2. Edit a Customer             " << endl;
+		cout << "\t\t\t|     3. Remove a Customer           " << endl;
+		cout << "\t\t\t|  	 4. Show All Customers          " << endl;
+		cout << "\t\t\t|     5. Exit This Menu              " << endl;
+		cout << "\t\t\t|------------------------------------" << endl;
 
-	case 2:
-		managr[index].editCustomer();
-		break;
+		cout << "\t\t\t\tEnter a number: ";
+		cin >> choice;
 
-	case 3:
-		managr[index].removeCustomer();
-		break;
+		switch (choice)
+		{
+		case 1:
+			managr[index].showCustomer();
+			break;
 
-	case 4:
-		managr[index].showAllCustomers();
-		break;
+		case 2:
+			managr[index].editCustomer();
+			break;
 
-	default:
-		cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
-		break;
-	}
+		case 3:
+			managr[index].removeCustomer();
+			break;
+
+		case 4:
+			managr[index].showAllCustomers();
+			break;
+
+		case 5:
+			system("cls");
+			break;
+
+		default:
+			cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
+			break;
+		}
+	} while (choice != 5);
 }
 //           ------------------------------------------------------------------------
 
 //            ----------------------------MANAGER'S DATA VIEW/EDIT FUNCTION-----------------------
 void managerData(int index)
 {
-	cout << "\n\n\t\t\t\tManager Options\n";
-	cout << "\t\t\t|------------------------------------" << endl;
-	cout << "\t\t\t| Choose an Option:                  " << endl;
-	cout << "\t\t\t|  1. View Personal Info             " << endl;
-	cout << "\t\t\t|  2. Edit Personal Info             " << endl;
-	cout << "\t\t\t|------------------------------------" << endl;
-
 	int opt;
-	cout << "\t\t\t\tEnter a number: ";
-	cin >> opt;
-
-	switch (opt)
+	do
 	{
-	case 1:
-		managr[index].displayManager();
-		break;
+		cout << "\n\n\t\t\t\tManager Options\n";
+		cout << "\t\t\t|------------------------------------" << endl;
+		cout << "\t\t\t| Choose an Option:                  " << endl;
+		cout << "\t\t\t|     1. View Personal Info          " << endl;
+		cout << "\t\t\t|     2. Edit Personal Info          " << endl;
+		cout << "\t\t\t|     3. Exit This Menu              " << endl;
+		cout << "\t\t\t|------------------------------------" << endl;
 
-	case 2:
-		managr[index].modifyManagerInfo();
-		break;
+		cout << "\t\t\t\tEnter a number: ";
+		cin >> opt;
 
-	default:
-		cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
-		break;
-	}
+		switch (opt)
+		{
+		case 1:
+			managr[index].displayManager();
+			break;
+
+		case 2:
+			managr[index].modifyManagerInfo();
+			break;
+
+		case 3:
+			system("cls");
+			break;
+
+		default:
+			cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
+			break;
+		}
+	} while (opt != 3);
 }
 //           ------------------------------------------------------------------------
 
 //            ----------------------------ALL CONTROLS FOR MANAGERS FUNCTION-----------------------
 void managerOptions(string managr_pin)
 {
+	int manager_opt;
 	for (int i = 0; i < 10; i++)
 	{
+
 		if (managr_pin == managr[i].getPin())
 		{
-			cout << "\n\n\t\t\t\tWelcome Mr '" << managr[i].getName() << "'\n";
-			cout << "\t\t\t|------------------------------------" << endl;
-			cout << "\t\t\t|  Choose an Option:                 " << endl;
-			cout << "\t\t\t|       1. Personal Info             " << endl;
-			cout << "\t\t\t|       2. Customer Operations       " << endl;
-			cout << "\t\t\t|       3. View All Accounts         " << endl;
-			cout << "\t\t\t|       4. View All Transactions     " << endl;
-			cout << "\t\t\t|------------------------------------" << endl;
-
-			int manager_opt;
-			cout << "\t\t\t\tEnter a number: ";
-			cin >> manager_opt;
-
-			switch (manager_opt)
+			do
 			{
-			case 1:
-				managerData(i);
-				break;
+				cout << "\n\n\t\t\t\tWelcome Mr '" << managr[i].getName() << "'\n";
+				cout << "\t\t\t|------------------------------------" << endl;
+				cout << "\t\t\t|  Choose an Option:                 " << endl;
+				cout << "\t\t\t|     1. Personal Info               " << endl;
+				cout << "\t\t\t|     2. Customer Operations         " << endl;
+				cout << "\t\t\t|     3. View All Accounts           " << endl;
+				cout << "\t\t\t|     4. View All Transactions       " << endl;
+				cout << "\t\t\t|     5. Exit This Menu              " << endl;
+				cout << "\t\t\t|------------------------------------" << endl;
 
-			case 2:
-				managerOptionsCustomer(i);
-				break;
+				cout << "\t\t\t\tEnter a number: ";
+				cin >> manager_opt;
 
-			case 3:
-				viewAllAccountsInfo();
-				break;
+				switch (manager_opt)
+				{
+				case 1:
+					managerData(i);
+					break;
 
-			case 4:
-				viewAllTransactions();
-				break;
+				case 2:
+					managerOptionsCustomer(i);
+					break;
 
-			default:
-				cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
-				break;
-			}
+				case 3:
+					viewAllAccountsInfo();
+					break;
+
+				case 4:
+					viewAllTransactions();
+					break;
+
+				case 5:
+					system("cls");
+					break;
+
+				default:
+					cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
+					break;
+				}
+
+			} while (manager_opt != 5);
+
+			break;
 		}
 	}
 }
 //           ------------------------------------------------------------------------
 
 //            ----------------------------ADVANCED ACCOUNT OPTIONS FUNCTION-----------------------
+
+// make this in customer
 void accountOperations()
 {
-
-	cout << "\n\n\t\t\t\tAdvanced Account Operations \n";
-	cout << "\t\t\t|------------------------------------" << endl;
-	cout << "\t\t\t| Choose an Option:                  " << endl;
-	cout << "\t\t\t|     1. Deposit Amount              " << endl;
-	cout << "\t\t\t|     2. Withdraw Amount             " << endl;
-	cout << "\t\t\t|------------------------------------" << endl;
-
 	string acnum;
 	int key;
-
-	cout << "\t\t\t\tEnter a number: ";
-	cin >> key;
-
-	switch (key)
+	do
 	{
-	case 1:
-	{
-		cout << "Enter Your Account Number: ";
-		cin >> acnum;
+		cout << "\n\n\t\t\t\tAdvanced Account Operations \n";
+		cout << "\t\t\t|------------------------------------" << endl;
+		cout << "\t\t\t| Choose an Option:                  " << endl;
+		cout << "\t\t\t|     1. Deposit Amount              " << endl;
+		cout << "\t\t\t|     2. Withdraw Amount             " << endl;
+		cout << "\t\t\t|     3. Transaction Options         " << endl;
+		cout << "\t\t\t|     4. Exit This Menu              " << endl;
+		cout << "\t\t\t|------------------------------------" << endl;
 
-		for (int i = 0; i < 25; i++)
+		cout << "\t\t\t\tEnter a number: ";
+		cin >> key;
+
+		switch (key)
 		{
-			if (acnum == accounts[i].getAccountNo())
-			{
-				accounts[i].depositAmount();
-				break;
-			}
-		}
-		break;
-	}
-
-	case 2:
-	{
-		cout << "Enter Your Account Number: ";
-		cin >> acnum;
-
-		for (int i = 0; i < 25; i++)
+		case 1:
 		{
-			if (acnum == accounts[i].getAccountNo())
-			{
-				accounts[i].withdrawAmount();
-				break;
-			}
-		}
-		break;
-	}
+			cout << "Enter Your Account Number: ";
+			cin >> acnum;
 
-	default:
-		cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
-		break;
-	}
+			for (int i = 0; i < 25; i++)
+			{
+				if (acnum == accounts[i].getAccountNo())
+				{
+					accounts[i].depositAmount();
+					break;
+				}
+			}
+			break;
+		}
+
+		case 2:
+		{
+			cout << "Enter Your Account Number: ";
+			cin >> acnum;
+
+			for (int i = 0; i < 25; i++)
+			{
+				if (acnum == accounts[i].getAccountNo())
+				{
+					accounts[i].withdrawAmount();
+					break;
+				}
+			}
+			break;
+		}
+
+		case 3:
+		{
+			for (int i = 0; i < 30; i++)
+			{
+				if (trans[i].getTransactionStatus() == false)
+				{
+					trans[i].makeTransaction();
+					break;
+				}
+			}
+			break;
+		}
+
+		case 4:
+			system("cls");
+			break;
+
+		default:
+			cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
+			break;
+		}
+
+	} while (key != 3);
 }
 
 //            ----------------------------ALL ACCOUNT OPTIONS FOR CUSTOMER FUNCTION-----------------------
 void accountOptions(int index)
 {
-	cout << "\n\n\t\t\t\tAccount Options\n";
-	cout << "\t\t\t|------------------------------------" << endl;
-	cout << "\t\t\t|  Choose an Option:                 " << endl;
-	cout << "\t\t\t|  	  1. Open an Account            " << endl;
-	cout << "\t\t\t|  	  2. Edit Account Info          " << endl;
-	cout << "\t\t\t|  	  3. Display Account Info       " << endl;
-	cout << "\t\t\t|  	  4. Close an Account           " << endl;
-	cout << "\t\t\t|------------------------------------" << endl;
-
-	int account_oper;
-
-	cout << "\t\t\t\tEnter a number: ";
-	cin >> account_oper;
-
-	switch (account_oper)
+	int option;
+	do
 	{
-	case 1:
-		custmr[index].openAccount();
-		accountOperations();
-		break;
+		cout << "\n\n\t\t\t\tAccount Options\n";
+		cout << "\t\t\t|------------------------------------" << endl;
+		cout << "\t\t\t|  Choose an Option:                 " << endl;
+		cout << "\t\t\t|  	 1. Open an Account             " << endl;
+		cout << "\t\t\t|  	 2. Edit Account Info           " << endl;
+		cout << "\t\t\t|  	 3. Display Account Info        " << endl;
+		cout << "\t\t\t|  	 4. Close an Account            " << endl;
+		cout << "\t\t\t|     5. Exit This Menu              " << endl;
+		cout << "\t\t\t|------------------------------------" << endl;
 
-	case 2:
-		custmr[index].editAccount();
-		break;
+		cout << "\t\t\t\tEnter a number: ";
+		cin >> option;
 
-	case 3:
-		custmr[index].viewAccounts();
-		break;
+		switch (option)
+		{
+		case 1:
+			custmr[index].openAccount();
+			accountOperations();
+			break;
 
-	case 4:
-		custmr[index].closeAccount();
-		break;
+		case 2:
+			custmr[index].editAccount();
+			break;
 
-	default:
-		cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
-		break;
-	}
+		case 3:
+			custmr[index].viewAccounts();
+			break;
+
+		case 4:
+			custmr[index].closeAccount();
+			break;
+
+		case 5:
+			system("cls");
+			break;
+
+		default:
+			cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
+			break;
+		}
+
+	} while (option != 5);
 }
 //            ----------------------------ALL CONTROLS FOR CUSTOMERS FUNCTION-----------------------
 void customerOptions(string cust_pin)
 {
+	int cust_opt;
 	for (int i = 0; i < 20; i++)
 	{
 		if (cust_pin == custmr[i].getPin())
 		{
-			cout << "\n\n\t\t\t\tWelcome Mr '" << custmr[i].getName() << "'\n";
-			cout << "\t\t\t|------------------------------------" << endl;
-			cout << "\t\t\t|  Choose an Option:                 " << endl;
-			cout << "\t\t\t|       1. View Personal Info        " << endl;
-			cout << "\t\t\t|       2. Edit Personal Info        " << endl;
-			cout << "\t\t\t|       3. Delete Customer           " << endl;
-			cout << "\t\t\t|       4. Account Options           " << endl;
-			cout << "\t\t\t|       5. Transaction Options       " << endl;
-			cout << "\t\t\t|------------------------------------" << endl;
-
-			int cust_opt;
-
-			cout << "\t\t\t\tEnter a number: ";
-			cin >> cust_opt;
-
-			switch (cust_opt)
+			do
 			{
-			case 1:
-				custmr[i].displayCustomer();
-				break;
+				cout << "\n\n\t\t\t\tWelcome Mr '" << custmr[i].getName() << "'\n";
+				cout << "\t\t\t|------------------------------------" << endl;
+				cout << "\t\t\t|  Choose an Option:                 " << endl;
+				cout << "\t\t\t|     1. View Personal Info          " << endl;
+				cout << "\t\t\t|     2. Edit Personal Info          " << endl;
+				cout << "\t\t\t|     3. Delete Personal Info        " << endl;
+				cout << "\t\t\t|     4. Account Options             " << endl;
+				cout << "\t\t\t|     5. Exit This Menu              " << endl;
+				cout << "\t\t\t|------------------------------------" << endl;
 
-			case 2:
-				custmr[i].modifyCustomerInfo();
-				break;
+				cout << "\t\t\t\tEnter a number: ";
+				cin >> cust_opt;
 
-			case 3:
-
-				custmr[i].deleteCustomer();
-				break;
-
-			case 4:
-				accountOptions(i);
-				break;
-
-			case 5:
-				// make separate transaction function
+				switch (cust_opt)
 				{
-					for (int i = 0; i < 30; i++)
-					{
-						if (trans[i].getTransactionStatus() == false)
-						{
-							trans[i].makeTransaction();
-							break;
-						}
-					}
+				case 1:
+					custmr[i].displayCustomer();
+					break;
+
+				case 2:
+					custmr[i].modifyCustomerInfo();
+					break;
+
+				case 3:
+					custmr[i].deleteCustomer();
+					break;
+
+				case 4:
+					accountOptions(i);
+					break;
+
+				case 5:
+					system("cls");
+					break;
+
+				default:
+					cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
 					break;
 				}
 
-			default:
-				cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
-				break;
-			}
+			} while (cust_opt != 6);
 			break;
 		}
 	}
@@ -530,11 +584,26 @@ void customerOptions(string cust_pin)
 //           ------------------------------------------------------------------------
 
 //            ----------------------------VIEW FUNCTIONS FOR MANAGERS-----------------------
+
+void viewAllAccountsInfo()
+{
+	cout << "-------------------------Accounts List---------------------------" << endl;
+	cout << "|Account Number --- Account Holder Name --- Account Balance|" << endl;
+	for (int i = 0; i < 25; i++)
+	{
+		if (accounts[i].getStatus() == true)
+			accounts[i].displayAccountInfo();
+		else
+			cout << "                ---                     ---                 " << endl;
+	}
+	cout << "------------------------------------------------------------------" << endl;
+}
+
 void viewAllTransactions()
 {
 	cout << "---------------------------------------------Transactions List----------------------------------------------------" << endl;
 	cout << "|Transaction Time --- Transaction Date --- Transferred By (AN) --- Transferred To (AN) --- Transaction Amount|" << endl;
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 30; i++)
 	{
 		if (trans[i].getTransactionStatus() == true)
 			trans[i].showTransaction();
@@ -545,17 +614,4 @@ void viewAllTransactions()
 	cout << "------------------------------------------------------------------------------------------------------------------" << endl;
 }
 
-void viewAllAccountsInfo()
-{
-	cout << "-------------------------Accounts List---------------------------" << endl;
-	cout << "|Account Number --- Account Holder Name --- Account Balance|" << endl;
-	for (int i = 0; i < 5; i++)
-	{
-		if (accounts[i].getStatus() == true)
-			accounts[i].displayAccountInfo();
-		else
-			cout << "                ---                     ---                 " << endl;
-	}
-	cout << "------------------------------------------------------------------" << endl;
-}
 //           ------------------------------------------------------------------------

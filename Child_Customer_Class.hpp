@@ -25,10 +25,10 @@ public:
     void readCustomer()
     {
         custmr_count++;
-
-        Human::readHuman();
-
         customer_id = "BkCustmr" + to_string(custmr_count);
+
+        cout << "\n----------------------------------------------------------------------------------------------" << endl;
+        Human::readHuman();
 
         cout << "\nPlease enter your CNIC Number: ";
         cin >> cnic_number;
@@ -42,6 +42,7 @@ public:
 
     void modifyCustomerInfo()
     {
+        cout << "\n----------------------------------------------------------------------------------------------" << endl;
         cout << "Customer ID cannot be changed! " << endl;
         cout << "Customer ID: " << customer_id << endl;
 
@@ -55,6 +56,7 @@ public:
 
     void displayCustomer() const
     {
+        cout << "\n----------------------------------------------------------------------------------------------" << endl;
         Human::displayHuman();
 
         cout << "\nCNIC Number: " << cnic_number << endl;

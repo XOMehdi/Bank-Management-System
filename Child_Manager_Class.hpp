@@ -11,22 +11,22 @@ class Manager : public Human
 {
 private:
     string manager_id, cust_id;
-    int no_of_customers;
+    int total_customers;
     static int manager_count;
 
 public:
     Manager() : Human()
     {
-        no_of_customers = Customer::customerCount();
+        total_customers = Customer::customerCount();
     }
 
     void readManager()
     {
         manager_count++;
-
-        Human::readHuman();
-
         manager_id = "BkManagr" + to_string(manager_count);
+
+        cout << "\n--------------------------------------------------------------------------------------------" << endl;
+        Human::readHuman();
 
         cout << "\nYou are now Registered as a Manager with the Manager ID: " << manager_id << endl;
         cout << "----------------------------------------------------------------------------------------------" << endl;
@@ -34,15 +34,17 @@ public:
 
     void displayManager() const
     {
+        cout << "\n--------------------------------------------------------------------------------------------" << endl;
         Human::displayHuman();
 
         cout << "\nManager ID: " << manager_id << endl;
-        cout << "\nTotal number of Customers: " << no_of_customers << endl;
+        cout << "\nTotal number of Customers: " << total_customers << endl;
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
     void modifyManagerInfo()
     {
+        cout << "\n--------------------------------------------------------------------------------------------" << endl;
         cout << "Manager ID cannot be changed! " << endl;
         cout << "Manager ID: " << manager_id << endl;
 
@@ -57,7 +59,7 @@ public:
         cout << "Enter the Customer's ID: ";
         cin >> cust_id;
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < total_customers; i++)
         {
             if (cust_id == custmr[i].getCustomerID())
             {
@@ -71,7 +73,7 @@ public:
         cout << "Enter the Customer's ID: ";
         cin >> cust_id;
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < total_customers; i++)
         {
             if (cust_id == custmr[i].getCustomerID())
             {
@@ -85,7 +87,7 @@ public:
         cout << "Enter the Customer's ID: ";
         cin >> cust_id;
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < total_customers; i++)
         {
             if (cust_id == custmr[i].getCustomerID())
             {
@@ -97,11 +99,16 @@ public:
 
     void showAllCustomers()
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < total_customers; i++)
         {
             if (custmr[i].getStatus() == true)
                 custmr[i].displayCustomer();
         }
+    }
+
+    static int managerCount()
+    {
+        return manager_count;
     }
 };
 

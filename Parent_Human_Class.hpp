@@ -33,7 +33,6 @@ void Human::readHuman()
 {
     status = true;
 
-    cout << "----------------------------------------------------------------------------------------------" << endl;
     cin.ignore();
 
     cout << "Please enter your Full Name: ";
@@ -45,7 +44,6 @@ void Human::readHuman()
 
 void Human::modifyHumanInfo()
 {
-    cout << "----------------------------------------------------------------------------------------------" << endl;
     cin.ignore();
 
     cout << "\nChange your Full Name: ";
@@ -57,7 +55,6 @@ void Human::modifyHumanInfo()
 
 void Human::displayHuman() const
 {
-    cout << "----------------------------------------------------------------------------------------------" << endl;
     cout << "Name: " << full_name << endl;
     cout << "\nPin: " << pin << endl;
 }
