@@ -23,9 +23,6 @@ int mangr_signup_count = 0, custmr_signup_count = 0;
 
 //            ----------------------------MAIN FUNCTIONS PROTOTYPES-----------------------
 
-void createManager();
-void createCustomer();
-
 void managerOptions(string);
 void managerData(int);
 void managerOptionsCustomer(int);
@@ -95,8 +92,15 @@ int main()
 
 					else
 					{
-						createManager();
-						mangr_signup_count++;
+						for (int i = 0; i < 10; i++)
+						{
+							if (managr[i].getStatus() == false)
+							{
+								managr[i].readManager();
+								mangr_signup_count++;
+								break;
+							}
+						}
 						// system("cls");
 						break;
 					}
@@ -115,8 +119,15 @@ int main()
 
 					else
 					{
-						createCustomer();
-						custmr_signup_count++;
+						for (int i = 0; i < 20; i++)
+						{
+							if (custmr[i].getStatus() == false)
+							{
+								custmr[i].readCustomer();
+								custmr_signup_count++;
+								break;
+							}
+						}
 						// system("cls");
 						break;
 					}
@@ -223,32 +234,6 @@ int main()
 }
 
 //            --------------------------FUNCTIONS DEFINITIONS-----------------------
-
-//            ----------------------------SIGN UP FUNCTIONS-----------------------
-void createManager()
-{
-	for (int i = 0; i < 10; i++)
-	{
-		if (managr[i].getStatus() == false)
-		{
-			managr[i].readManager();
-			break;
-		}
-	}
-}
-
-void createCustomer()
-{
-	for (int i = 0; i < 20; i++)
-	{
-		if (custmr[i].getStatus() == false)
-		{
-			custmr[i].readCustomer();
-			break;
-		}
-	}
-}
-//           ------------------------------------------------------------------------
 
 //            ----------------------------CUSTOMER OPTIONS FOR MANAGER FUNCTION-----------------------
 void managerOptionsCustomer(int index)
