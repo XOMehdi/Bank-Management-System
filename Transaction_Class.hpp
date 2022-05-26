@@ -11,7 +11,7 @@ class Transaction
 private:
     string sender_accnum, receiver_accnum, transaction_time, transaction_date;
     float transaction_amount;
-    int sender_index, receiver_index;
+    int sender_index, receiver_index, total_accounts;
     bool sender_cond, receiver_cond; // variables to be assigned 'true' only if sender & receiver's account exist with the entered account number
 
 public:
@@ -23,6 +23,7 @@ public:
 
 Transaction::Transaction()
 {
+    total_accounts = Account::getAccCount();
     transaction_time = "None";
     transaction_date = "None";
     sender_cond = false;
@@ -47,7 +48,7 @@ void Transaction::makeTransaction()
 
         transaction_amount = abs(transaction_amount);
 
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < total_accounts; i++)
         {
             if (sender_accnum == accounts[i].getAccountNo())
             {

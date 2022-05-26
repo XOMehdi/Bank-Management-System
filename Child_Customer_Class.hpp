@@ -11,12 +11,13 @@ class Customer : public Human
 {
 private:
     string customer_id, cnic_number, phone_number, acc_num;
-    int no_of_accounts;
+    int no_of_accounts, total_accounts;
     static int custmr_count;
 
 public:
     Customer() : Human()
     {
+        total_accounts = Account::getAccCount();
         cnic_number = "  ";
         phone_number = "  ";
         no_of_accounts = 0;
@@ -25,7 +26,7 @@ public:
     void readCustomer()
     {
         custmr_count++;
-        customer_id = "BkCustmr" + to_string(custmr_count);
+        customer_id = "BkCustomer" + to_string(custmr_count);
 
         cout << "\n----------------------------------------------------------------------------------------------" << endl;
         Human::readHuman();
@@ -86,7 +87,7 @@ public:
     // functions for integration of account class
     void openAccount()
     {
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < total_accounts; i++)
         {
             if (accounts[i].getStatus() == false)
             {
@@ -102,7 +103,7 @@ public:
         cout << "Enter the Account Number: ";
         cin >> acc_num;
 
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < total_accounts; i++)
         {
             if (acc_num == accounts[i].getAccountNo())
             {
@@ -117,7 +118,7 @@ public:
         cout << "Enter the Account Number: ";
         cin >> acc_num;
 
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < total_accounts; i++)
         {
             if (acc_num == accounts[i].getAccountNo())
             {
@@ -133,7 +134,7 @@ public:
             cout << "Enter Your Account Number " << i + 1 << ": ";
             cin >> acc_num;
 
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < total_accounts; i++)
             {
                 if (acc_num == accounts[i].getAccountNo())
                 {
