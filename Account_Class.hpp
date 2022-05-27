@@ -10,32 +10,43 @@ using namespace std;
 class Account
 {
 private:
-    string account_num;
-    string account_name;
+    string account_num, account_name;
     float balance;
-    bool status = false;
+    bool status;
+    static int acc_count;
 
 public:
+    Account();
     void readAccount();
     void displayAccountInfo() const;
     void modifyAccountInfo();
+    void deleteAccount();
     void depositAmount();
     void withdrawAmount();
-    void deleteAccount();
 
     // getter functions
     string getAccountNo() const;
     float getBalance() const;
     bool getStatus() const;
+    static int getAccCount();
 
     // functions for integration of transaction class
     void addTransactionAmount(float);
     void subTransactionAmount(float);
+    void transferAmount();
+    void displayTransaction();
 };
+
+Account::Account()
+{
+    status = false;
+    balance = 0;
+}
 
 void Account::readAccount()
 {
     status = true;
+    acc_count++;
 
     cout << "----------------------------------------------------------------------------------------------" << endl;
     cout << "Please set an Account Number (8 digits): ";
@@ -50,30 +61,6 @@ void Account::readAccount()
 
     cout << "\nAccount Created!" << endl;
     cout << "----------------------------------------------------------------------------------------------" << endl;
-}
-
-void Account::depositAmount()
-{
-    float deposit_amount;
-
-    cout << "----------------------------------------------------------------------------------------------" << endl;
-    cout << "Enter the Deposit Amount: ";
-    cin >> deposit_amount;
-    cout << "----------------------------------------------------------------------------------------------" << endl;
-
-    balance += deposit_amount;
-}
-
-void Account::withdrawAmount()
-{
-    float withdraw_amount;
-
-    cout << "----------------------------------------------------------------------------------------------" << endl;
-    cout << "Enter the Withdrawal Amount: ";
-    cin >> withdraw_amount;
-    cout << "----------------------------------------------------------------------------------------------" << endl;
-
-    balance -= withdraw_amount;
 }
 
 void Account::modifyAccountInfo()
@@ -95,6 +82,50 @@ void Account::displayAccountInfo() const
     cout << balance << endl;
 }
 
+void Account::deleteAccount()
+{
+    account_num = "  ";
+    account_name = "  ";
+    balance = 0;
+    status = false;
+}
+
+void Account::depositAmount()
+{
+    float deposit_amount;
+
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+    cout << "Account Balance: " << balance << endl;
+
+    cout << "\nEnter the Deposit Amount: ";
+    cin >> deposit_amount;
+
+    cout << "\nAn amount of " << deposit_amount << " successfully deposited to Account Number: " << account_num << endl;
+
+    balance += deposit_amount;
+
+    cout << "\nAccount Balance: " << balance << endl;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+}
+
+void Account::withdrawAmount()
+{
+    float withdraw_amount;
+
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+    cout << "Account Balance: " << balance << endl;
+
+    cout << "\nEnter the Withdrawal Amount: ";
+    cin >> withdraw_amount;
+
+    cout << "\nAn amount of " << withdraw_amount << " successfully withdrawn from Account Number: " << account_num << endl;
+
+    balance -= withdraw_amount;
+
+    cout << "\nAccount Balance: " << balance << endl;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+}
+
 string Account::getAccountNo() const
 {
     return account_num;
@@ -110,6 +141,12 @@ bool Account::getStatus() const
     return status;
 }
 
+int Account::getAccCount()
+{
+    return acc_count;
+}
+
+// -------transaction
 void Account::addTransactionAmount(float transaction_amount)
 {
     balance += transaction_amount;
@@ -120,13 +157,7 @@ void Account::subTransactionAmount(float transaction_amount)
     balance -= transaction_amount;
 }
 
-void Account::deleteAccount()
-{
-    account_num = "  ";
-    account_name = "  ";
-    balance = 0;
-    status = false;
-}
+int Account::acc_count = 0;
 
 Account accounts[25];
 

@@ -15,25 +15,6 @@ private:
     static int manager_count;
 
 public:
-    /*
-    Manager() : Human()
-    {
-        total_customers = Customer::customerCount();
-    }
-
-    void readManager()
-    {
-        manager_count++;
-        manager_id = "BkManager" + to_string(manager_count);
-
-        cout << "\n--------------------------------------------------------------------------------------------" << endl;
-        Human::readHuman();
-
-        cout << "\nYou are now Registered as a Manager with the Manager ID: " << manager_id << endl;
-        cout << "----------------------------------------------------------------------------------------------" << endl;
-    }
-    */
-
     void setData(string full_name, string pin)
     {
         this->full_name = full_name;

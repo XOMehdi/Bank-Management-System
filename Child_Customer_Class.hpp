@@ -3,6 +3,7 @@
 
 #include "Parent_Human_Class.hpp"
 #include "Account_Class.hpp"
+#include "Transaction_Class.hpp"
 #include <iostream>
 
 using namespace std;
@@ -11,16 +12,17 @@ class Customer : public Human
 {
 private:
     string customer_id, cnic_number, phone_number, acc_num;
-    int no_of_accounts, total_accounts;
+    int no_of_accounts, no_of_transactions, total_accounts, total_transactions;
     static int custmr_count;
 
 public:
     Customer() : Human()
     {
         total_accounts = Account::getAccCount();
-        cnic_number = "  ";
-        phone_number = "  ";
+        total_transactions = Transaction::getTransCount();
+
         no_of_accounts = 0;
+        no_of_transactions = 0;
     }
 
     void readCustomer()
@@ -67,11 +69,6 @@ public:
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
-    string getCustomerID() const
-    {
-        return customer_id;
-    }
-
     void deleteCustomer()
     {
         full_name = "  ";
@@ -84,10 +81,20 @@ public:
         no_of_accounts = 0;
     }
 
+    string getCustomerID() const
+    {
+        return customer_id;
+    }
+
+    static int customerCount()
+    {
+        return custmr_count;
+    }
+
     // functions for integration of account class
     void openAccount()
     {
-        for (int i = 0; i < total_accounts; i++)
+        for (int i = 0; i < 25; i++)
         {
             if (accounts[i].getStatus() == false)
             {
@@ -98,59 +105,129 @@ public:
         }
     }
 
-    void closeAccount()
-    {
-        cout << "Enter the Account Number: ";
-        cin >> acc_num;
-
-        for (int i = 0; i < total_accounts; i++)
-        {
-            if (acc_num == accounts[i].getAccountNo())
-            {
-                accounts[i].deleteAccount();
-                cout << "\nAccount is Successfully Closed!";
-            }
-        }
-    }
-
     void editAccount()
     {
-        cout << "Enter the Account Number: ";
+        cout << "\nEnter the Account Number: ";
         cin >> acc_num;
 
-        for (int i = 0; i < total_accounts; i++)
+        for (int i = 0; i < total_accounts + 1; i++)
         {
             if (acc_num == accounts[i].getAccountNo())
             {
                 accounts[i].modifyAccountInfo();
+                break;
             }
         }
     }
 
-    void viewAccounts()
+    void viewAccount()
     {
+        int count_condition = 0;
+
         for (int i = 0; i < no_of_accounts; i++)
         {
             cout << "Enter Your Account Number " << i + 1 << ": ";
             cin >> acc_num;
 
-            for (int i = 0; i < total_accounts; i++)
+            for (int i = 0; i < total_accounts + 1; i++)
             {
                 if (acc_num == accounts[i].getAccountNo())
                 {
-                    if (no_of_accounts == 1)
-                    {
+                    count_condition++;
+
+                    if (count_condition == 1)
                         cout << "|Account Number --- Account Holder Name --- Account Balance|" << endl;
-                    }
+
                     accounts[i].displayAccountInfo();
+                    break;
                 }
             }
         }
     }
 
-    static int customerCount()
+    void closeAccount()
     {
-        return custmr_count;
+        cout << "\nEnter the Account Number: ";
+        cin >> acc_num;
+
+        for (int i = 0; i < total_accounts + 1; i++)
+        {
+            if (acc_num == accounts[i].getAccountNo())
+            {
+                accounts[i].deleteAccount();
+                cout << "\nAccount is Successfully Closed!";
+                break;
+            }
+        }
+    }
+
+    void depositInAccount()
+    {
+        cout << "\nEnter the Account Number: ";
+        cin >> acc_num;
+
+        for (int i = 0; i < total_accounts + 1; i++)
+        {
+            if (acc_num == accounts[i].getAccountNo())
+            {
+                accounts[i].depositAmount();
+                break;
+            }
+        }
+    }
+
+    void withdrawFromAccount()
+    {
+        cout << "\nEnter the Account Number: ";
+        cin >> acc_num;
+
+        for (int i = 0; i < total_accounts + 1; i++)
+        {
+            if (acc_num == accounts[i].getAccountNo())
+            {
+                accounts[i].withdrawAmount();
+                break;
+            }
+        }
+    }
+
+    // functions for integration of transaction class
+    void doTransaction()
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            if (trans[i].getTransactionStatus() == false)
+            {
+                trans[i].makeTransaction();
+                no_of_transactions++;
+                break;
+            }
+        }
+    }
+
+    void viewTransaction()
+    {
+        cout << "\nEnter the Account Number: ";
+        cin >> acc_num;
+
+        int count_condition = 0;
+
+        for (int i = 0; i < no_of_transactions; i++)
+        {
+            for (int i = 0; i < total_transactions + 1; i++)
+            {
+                if (acc_num == trans[i].getSenderAccNo())
+                {
+                    count_condition++;
+
+                    if (count_condition == 0)
+                        cout << "|Transaction Time --- Transaction Date --- Transferred By (AN) --- Transferred To (AN) --- Transaction Amount|" << endl;
+
+                    trans[i].showTransaction();
+                    break;
+                }
+            }
+        }
     }
 };
 int Customer::custmr_count = 0;
