@@ -23,7 +23,7 @@ public:
         manager_count++;
         manager_id = "BkManager" + to_string(manager_count);
 
-        total_customers = Customer::customerCount();
+        total_customers = Customer::getCustomerCount();
     }
 
     void displayManager() const

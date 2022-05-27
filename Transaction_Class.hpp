@@ -19,6 +19,7 @@ public:
     Transaction();
     void makeTransaction();
     void showTransaction() const;
+    void tabularTransInfo() const;
 
     // getter functions
     bool getTransactionStatus() const;
@@ -144,6 +145,17 @@ void Transaction::makeTransaction()
 }
 
 void Transaction::showTransaction() const
+{
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+    cout << "Transaction Time: " << transaction_time << endl;
+    cout << "\nTransaction Date: " << transaction_date << endl;
+    cout << "\nTransferred By (AN): " << sender_accnum << endl;
+    cout << "\nTransferred To (AN): " << receiver_accnum << endl;
+    cout << "\nTransaction Amount: " << transaction_amount << endl;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+}
+
+void Transaction::tabularTransInfo() const
 {
     // printing data in a tabular form
     cout << ' ' << transaction_time << "         --- ";

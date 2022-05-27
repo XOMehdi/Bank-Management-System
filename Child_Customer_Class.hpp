@@ -86,7 +86,7 @@ public:
         return customer_id;
     }
 
-    static int customerCount()
+    static int getCustomerCount()
     {
         return custmr_count;
     }
@@ -122,22 +122,15 @@ public:
 
     void viewAccount()
     {
-        int count_condition = 0;
-
         for (int i = 0; i < no_of_accounts; i++)
         {
-            cout << "Enter Your Account Number " << i + 1 << ": ";
+            cout << "\nEnter Your Account Number " << i + 1 << ": ";
             cin >> acc_num;
 
             for (int i = 0; i < total_accounts + 1; i++)
             {
                 if (acc_num == accounts[i].getAccountNo())
                 {
-                    count_condition++;
-
-                    if (count_condition == 1)
-                        cout << "|Account Number --- Account Holder Name --- Account Balance|" << endl;
-
                     accounts[i].displayAccountInfo();
                     break;
                 }
@@ -210,19 +203,12 @@ public:
         cout << "\nEnter the Account Number: ";
         cin >> acc_num;
 
-        int count_condition = 0;
-
         for (int i = 0; i < no_of_transactions; i++)
         {
             for (int i = 0; i < total_transactions + 1; i++)
             {
                 if (acc_num == trans[i].getSenderAccNo())
                 {
-                    count_condition++;
-
-                    if (count_condition == 0)
-                        cout << "|Transaction Time --- Transaction Date --- Transferred By (AN) --- Transferred To (AN) --- Transaction Amount|" << endl;
-
                     trans[i].showTransaction();
                     break;
                 }

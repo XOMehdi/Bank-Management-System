@@ -19,6 +19,7 @@ public:
     Account();
     void readAccount();
     void displayAccountInfo() const;
+    void TabularAccInfo() const;
     void modifyAccountInfo();
     void deleteAccount();
     void depositAmount();
@@ -77,6 +78,16 @@ void Account::modifyAccountInfo()
 
 void Account::displayAccountInfo() const
 {
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+    cout << "Account Number: " << account_num << endl;
+    cout << "\nAccount Holder Name: " << account_name << endl;
+    cout << "\nAccount Balance: " << balance << endl;
+    cout << "----------------------------------------------------------------------------------------------" << endl;
+}
+
+void Account::TabularAccInfo() const
+{
+    // printing data in a tabular form
     cout << ' ' << account_num << setw(12) << " ";
     cout << account_name << setw(16) << " ";
     cout << balance << endl;
@@ -88,6 +99,7 @@ void Account::deleteAccount()
     account_name = "  ";
     balance = 0;
     status = false;
+    acc_count--;
 }
 
 void Account::depositAmount()
