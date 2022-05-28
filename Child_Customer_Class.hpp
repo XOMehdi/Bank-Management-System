@@ -62,10 +62,10 @@ public:
         cout << "\n----------------------------------------------------------------------------------------------" << endl;
         Human::displayHuman();
 
-        cout << "\nCNIC Number: " << cnic_number << endl;
-        cout << "\nPhone Number: " << phone_number << endl;
-        cout << "\nCustomer ID: " << customer_id << endl;
-        cout << "\nNumber of Accounts: " << no_of_accounts << endl;
+        cout << "CNIC Number: " << cnic_number << endl;
+        cout << "Phone Number: " << phone_number << endl;
+        cout << "Customer ID: " << customer_id << endl;
+        cout << "Number of Accounts: " << no_of_accounts << endl;
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
@@ -78,7 +78,12 @@ public:
         customer_id = "  ";
         cnic_number = "  ";
         phone_number = "  ";
-        no_of_accounts = 0;
+
+        if (no_of_accounts > 0)
+        {
+            closeAllAccounts();
+            removeTransactions();
+        }
     }
 
     string getCustomerID() const
@@ -94,7 +99,7 @@ public:
     // functions for integration of account class
     void openAccount()
     {
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 30; i++)
         {
             if (accounts[i].getStatus() == false)
             {
@@ -110,7 +115,7 @@ public:
         cout << "\nEnter the Account Number: ";
         cin >> acc_num;
 
-        for (int i = 0; i < total_accounts + 1; i++)
+        for (int i = 0; i < 30; i++)
         {
             if (acc_num == accounts[i].getAccountNo())
             {
@@ -127,7 +132,7 @@ public:
             cout << "\nEnter Your Account Number " << i + 1 << ": ";
             cin >> acc_num;
 
-            for (int i = 0; i < total_accounts + 1; i++)
+            for (int i = 0; i < 30; i++)
             {
                 if (acc_num == accounts[i].getAccountNo())
                 {
@@ -143,7 +148,7 @@ public:
         cout << "\nEnter the Account Number: ";
         cin >> acc_num;
 
-        for (int i = 0; i < total_accounts + 1; i++)
+        for (int i = 0; i < 30; i++)
         {
             if (acc_num == accounts[i].getAccountNo())
             {
@@ -154,12 +159,30 @@ public:
         }
     }
 
+    void closeAllAccounts()
+    {
+        for (int i = 0; i < no_of_accounts; i++)
+        {
+            cout << "\nEnter Your Account Number " << i + 1 << ": ";
+            cin >> acc_num;
+
+            for (int i = 0; i < 30; i++)
+            {
+                if (acc_num == accounts[i].getAccountNo())
+                {
+                    accounts[i].deleteAccount();
+                    break;
+                }
+            }
+        }
+    }
+
     void depositInAccount()
     {
         cout << "\nEnter the Account Number: ";
         cin >> acc_num;
 
-        for (int i = 0; i < total_accounts + 1; i++)
+        for (int i = 0; i < 30; i++)
         {
             if (acc_num == accounts[i].getAccountNo())
             {
@@ -174,7 +197,7 @@ public:
         cout << "\nEnter the Account Number: ";
         cin >> acc_num;
 
-        for (int i = 0; i < total_accounts + 1; i++)
+        for (int i = 0; i < 30; i++)
         {
             if (acc_num == accounts[i].getAccountNo())
             {
@@ -187,7 +210,7 @@ public:
     // functions for integration of transaction class
     void doTransaction()
     {
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 50; i++)
         {
             if (trans[i].getTransactionStatus() == false)
             {
@@ -205,7 +228,7 @@ public:
 
         for (int i = 0; i < no_of_transactions; i++)
         {
-            for (int i = 0; i < total_transactions + 1; i++)
+            for (int i = 0; i < 50; i++)
             {
                 if (acc_num == trans[i].getSenderAccNo())
                 {
@@ -215,9 +238,27 @@ public:
             }
         }
     }
+
+    void removeTransactions()
+    {
+        cout << "\nEnter the Account Number: ";
+        cin >> acc_num;
+
+        for (int i = 0; i < no_of_transactions; i++)
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                if (acc_num == trans[i].getSenderAccNo())
+                {
+                    trans[i].deleteTransRecord();
+                    break;
+                }
+            }
+        }
+    }
 };
 int Customer::custmr_count = 0;
 
-Customer custmr[20];
+Customer custmr[15];
 
 #endif /* Child_Customer_Class_hpp */

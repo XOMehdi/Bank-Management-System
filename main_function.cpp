@@ -9,15 +9,16 @@ using namespace std;
 
 /*
 Total 3 managers
-Total 20 customers
-Total 25 accounts
-Total 30 transactions
+Total 15 customers
+Total 30 accounts
+Total 50 transactions
 
-	"VALUES CAN BE ALTERED"
+	"VALUES/SIZES CAN BE ALTERED"
 */
 
+// operator overloading possible?
 // account as a data member of customers (composition)?
-// pending bugs in account & transaction functions/classes
+// manager/customer/account/transaction functions/classes unoptimized
 
 //            ----------------------------MAIN FUNCTIONS PROTOTYPES-----------------------
 void customerAllOptions(string);
@@ -29,11 +30,9 @@ void transactionOptions(int);
 void managerAllOptions(string);
 void managerSettings(int);
 void managerOperateCustomer(int);
-void viewAllTransactions();
-void viewAllAccountsInfo();
-//           ------------------------------------------------------------------------
+//            ------------------------------------------------------------------------
 
-//									MAIN FUNCTION
+//            ----------------------------MAIN FUNCTION-----------------------
 int main()
 {
 	// --------------------------------------------
@@ -94,7 +93,7 @@ int main()
 				{
 				case 1:
 				{
-					if (Customer::getCustomerCount() == 20)
+					if (Customer::getCustomerCount() == 15)
 					{
 						cout << "\t\t\t\t\tSorry! Customer Slot is Full\n";
 						cout << "\t\t\t\t\tNo more Customers can be created at this moment!\n";
@@ -103,12 +102,11 @@ int main()
 
 					else
 					{
-						for (int i = 0; i < 20; i++)
+						for (int i = 0; i < 15; i++)
 						{
 							if (custmr[i].getStatus() == false)
 							{
 								custmr[i].readCustomer();
-								// Customer::getcustomercount++;
 								break;
 							}
 						}
@@ -173,7 +171,7 @@ int main()
 void customerAllOptions(string cust_pin)
 {
 	int cust_opt;
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 15; i++)
 	{
 		if (cust_pin == custmr[i].getPin())
 		{
@@ -247,7 +245,7 @@ void accountMenu(int index)
 		{
 		case 1:
 		{
-			if (Account::getAccCount() == 25)
+			if (Account::getAccCount() == 30)
 			{
 				cout << "\t\t\t\t\tSorry! Account Slot is Full\n";
 				cout << "\t\t\t\t\tNo more Accounts can be created at this moment!\n";
@@ -375,7 +373,7 @@ void transactionOptions(int index)
 		{
 		case 1:
 		{
-			if (Transaction::getTransCount() == 30)
+			if (Transaction::getTransCount() == 50)
 			{
 				cout << "\t\t\t\t\tSorry! Transaction Limit is Reached\n";
 				cout << "\t\t\t\t\tNo more Transactions can be made!\n";
@@ -520,7 +518,7 @@ void managerAllOptions(string managers_pin)
 
 					else
 					{
-						viewAllAccountsInfo();
+						managers[i].viewAllAccountsInfo();
 						break;
 					}
 
@@ -537,7 +535,7 @@ void managerAllOptions(string managers_pin)
 
 					else
 					{
-						viewAllTransactions();
+						managers[i].viewAllTransactions();
 						break;
 					}
 
@@ -567,7 +565,7 @@ void managerOperateCustomer(int index)
 	int choice;
 	do
 	{
-		cout << "\n\n\t\t\t\tCustomer Options for Manager\n";
+		cout << "\n\n\t\t\t   Customer Options for Manager\n";
 		cout << "\t\t\t|------------------------------------" << endl;
 		cout << "\t\t\t| Choose an Option:                  " << endl;
 		cout << "\t\t\t|     1. View a Customer             " << endl;
@@ -648,35 +646,3 @@ void managerSettings(int index)
 	} while (opt != 3);
 }
 //           ------------------------------------------------------------------------
-
-//            ----------------------------VIEW FUNCTIONS FOR MANAGERS-----------------------
-
-void viewAllAccountsInfo()
-{
-	cout << "\n-------------------------Accounts List---------------------------" << endl;
-	cout << "|Account Number --- Account Holder Name --- Account Balance|" << endl;
-	for (int i = 0; i < Account::getAccCount(); i++)
-	{
-		if (accounts[i].getStatus() == true)
-			accounts[i].TabularAccInfo();
-
-		else
-			cout << "                ---                     ---                 " << endl;
-	}
-	cout << "------------------------------------------------------------------" << endl;
-}
-
-void viewAllTransactions()
-{
-	cout << "\n---------------------------------------------Transactions List----------------------------------------------------" << endl;
-	cout << "|Transaction Time --- Transaction Date --- Transferred By (AN) --- Transferred To (AN) --- Transaction Amount|" << endl;
-	for (int i = 0; i < Transaction::getTransCount(); i++)
-	{
-		if (trans[i].getTransactionStatus() == true)
-			trans[i].tabularTransInfo();
-
-		else
-			cout << "                  ---                  ---                     ---                     ---                    " << endl;
-	}
-	cout << "------------------------------------------------------------------------------------------------------------------" << endl;
-}

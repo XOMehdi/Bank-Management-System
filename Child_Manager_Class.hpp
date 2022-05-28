@@ -31,8 +31,8 @@ public:
         cout << "\n--------------------------------------------------------------------------------------------" << endl;
         Human::displayHuman();
 
-        cout << "\nManager ID: " << manager_id << endl;
-        cout << "\nTotal number of Customers: " << total_customers << endl;
+        cout << "Manager ID: " << manager_id << endl;
+        cout << "Total number of Customers: " << total_customers << endl;
         cout << "----------------------------------------------------------------------------------------------" << endl;
     }
 
@@ -50,10 +50,10 @@ public:
     // functions for integration of customer class
     void showCustomer()
     {
-        cout << "Enter the Customer's ID: ";
+        cout << "\nEnter the Customer's ID: ";
         cin >> cust_id;
 
-        for (int i = 0; i < total_customers; i++)
+        for (int i = 0; i < 15; i++)
         {
             if (cust_id == custmr[i].getCustomerID())
             {
@@ -64,10 +64,10 @@ public:
 
     void editCustomer()
     {
-        cout << "Enter the Customer's ID: ";
+        cout << "\nEnter the Customer's ID: ";
         cin >> cust_id;
 
-        for (int i = 0; i < total_customers; i++)
+        for (int i = 0; i < 15; i++)
         {
             if (cust_id == custmr[i].getCustomerID())
             {
@@ -78,10 +78,10 @@ public:
 
     void removeCustomer()
     {
-        cout << "Enter the Customer's ID: ";
+        cout << "\nEnter the Customer's ID: ";
         cin >> cust_id;
 
-        for (int i = 0; i < total_customers; i++)
+        for (int i = 0; i < 15; i++)
         {
             if (cust_id == custmr[i].getCustomerID())
             {
@@ -93,7 +93,7 @@ public:
 
     void showAllCustomers()
     {
-        for (int i = 0; i < total_customers; i++)
+        for (int i = 0; i < 15; i++)
         {
             if (custmr[i].getStatus() == true)
                 custmr[i].displayCustomer();
@@ -103,6 +103,37 @@ public:
     static int getManagerCount()
     {
         return manager_count;
+    }
+
+    //            ----------------------------VIEW ALL INFO FUNCTIONS-----------------------
+    void viewAllAccountsInfo()
+    {
+        cout << "\n-------------------------Accounts List---------------------------" << endl;
+        cout << "|Account Number --- Account Holder Name --- Account Balance|" << endl;
+        for (int i = 0; i < Account::getAccCount(); i++)
+        {
+            if (accounts[i].getStatus() == true)
+                accounts[i].TabularAccInfo();
+
+            else
+                cout << "                ---                     ---                 " << endl;
+        }
+        cout << "------------------------------------------------------------------" << endl;
+    }
+
+    void viewAllTransactions()
+    {
+        cout << "\n---------------------------------------------Transactions List----------------------------------------------------" << endl;
+        cout << "|Transaction Time --- Transaction Date --- Transferred By (AN) --- Transferred To (AN) --- Transaction Amount|" << endl;
+        for (int i = 0; i < Transaction::getTransCount(); i++)
+        {
+            if (trans[i].getTransactionStatus() == true)
+                trans[i].tabularTransInfo();
+
+            else
+                cout << "                  ---                  ---                     ---                     ---                    " << endl;
+        }
+        cout << "------------------------------------------------------------------------------------------------------------------" << endl;
     }
 };
 

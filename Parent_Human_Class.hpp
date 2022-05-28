@@ -56,7 +56,7 @@ void Human::modifyHumanInfo()
 void Human::displayHuman() const
 {
     cout << "Name: " << full_name << endl;
-    cout << "\nPin: " << pin << endl;
+    cout << "Pin: " << pin << endl;
 }
 
 string Human::getPin() const

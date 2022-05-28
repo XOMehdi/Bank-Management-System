@@ -20,6 +20,7 @@ public:
     void makeTransaction();
     void showTransaction() const;
     void tabularTransInfo() const;
+    void deleteTransRecord();
 
     // getter functions
     bool getTransactionStatus() const;
@@ -30,8 +31,8 @@ public:
 Transaction::Transaction()
 {
     total_accounts = Account::getAccCount();
-    transaction_time = "None";
-    transaction_date = "None";
+    transaction_time = "  ";
+    transaction_date = "  ";
     sender_cond = false;
     receiver_cond = false;
     transaction_amount = 0;
@@ -52,7 +53,7 @@ void Transaction::makeTransaction()
 
     transaction_amount = abs(transaction_amount);
 
-    for (int i = 0; i < total_accounts + 1; i++)
+    for (int i = 0; i < 30; i++)
     {
         if (sender_accnum == accounts[i].getAccountNo())
         {
@@ -165,6 +166,18 @@ void Transaction::tabularTransInfo() const
     cout << transaction_amount << endl;
 }
 
+void Transaction::deleteTransRecord()
+{
+    transaction_time = "  ";
+    transaction_date = "  ";
+    sender_accnum = "  ";
+    receiver_accnum = "  ";
+    transaction_amount = 0;
+    sender_cond = false;
+    receiver_cond = false;
+    transactions_count--;
+}
+
 bool Transaction::getTransactionStatus() const
 {
     if (sender_cond == true && receiver_cond == true)
@@ -186,6 +199,6 @@ string Transaction::getSenderAccNo()
 
 int Transaction::transactions_count = 0;
 
-Transaction trans[30];
+Transaction trans[50];
 
 #endif /* Transaction_Class_hpp */

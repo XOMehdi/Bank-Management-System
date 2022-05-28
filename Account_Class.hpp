@@ -158,11 +158,23 @@ int Account::getAccCount()
     return acc_count;
 }
 
-// -------transaction
 void Account::addTransactionAmount(float transaction_amount)
 {
     balance += transaction_amount;
 }
+
+/*
+// -------operator overloading 'increment' with for loop?
+void operator++(int)
+{   float transaction_amount;
+
+    cout << "\nPlease enter the Transaction Amount: ";
+    cin >> transaction_amount;
+
+    for (int i = 0; i < transaction_amount; i++)
+        balance++;
+}
+*/
 
 void Account::subTransactionAmount(float transaction_amount)
 {
@@ -171,6 +183,6 @@ void Account::subTransactionAmount(float transaction_amount)
 
 int Account::acc_count = 0;
 
-Account accounts[25];
+Account accounts[30];
 
 #endif /* Account_Class_hpp */
