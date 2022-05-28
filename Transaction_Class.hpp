@@ -104,8 +104,9 @@ void Transaction::makeTransaction()
 
     if (sender_cond == true && receiver_cond == true)
     {
-        accounts[receiver_index].addTransactionAmount(transaction_amount);
-        accounts[sender_index].subTransactionAmount(transaction_amount);
+        // overloaded operators to add/subtract transaction amounts to/from the balance
+        ++accounts[receiver_index];
+        accounts[sender_index]--;
 
         cout << "----------------------------------------------------------------------------------------------" << endl;
         cout << "Transaction Successful!!!" << endl;
@@ -159,10 +160,10 @@ void Transaction::showTransaction() const
 void Transaction::tabularTransInfo() const
 {
     // printing data in a tabular form
-    cout << ' ' << transaction_time << "         --- ";
-    cout << transaction_date << "  --- ";
-    cout << sender_accnum << "            --- ";
-    cout << receiver_accnum << "            --- ";
+    cout << ' ' << transaction_time << "             ";
+    cout << transaction_date << "      ";
+    cout << sender_accnum << "                ";
+    cout << receiver_accnum << "                ";
     cout << transaction_amount << endl;
 }
 

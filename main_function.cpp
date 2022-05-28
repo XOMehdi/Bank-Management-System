@@ -16,7 +16,6 @@ Total 50 transactions
 	"VALUES/SIZES CAN BE ALTERED"
 */
 
-// operator overloading possible?
 // account as a data member of customers (composition)?
 // manager/customer/account/transaction functions/classes unoptimized
 
@@ -571,7 +570,7 @@ void managerOperateCustomer(int index)
 		cout << "\t\t\t|     1. View a Customer             " << endl;
 		cout << "\t\t\t|     2. Edit a Customer             " << endl;
 		cout << "\t\t\t|     3. Remove a Customer           " << endl;
-		cout << "\t\t\t|     4. Show All Customers          " << endl;
+		cout << "\t\t\t|     4. View All Customers          " << endl;
 		cout << "\t\t\t|     5. Exit This Menu              " << endl;
 		cout << "\t\t\t|------------------------------------" << endl;
 
@@ -593,7 +592,7 @@ void managerOperateCustomer(int index)
 			break;
 
 		case 4:
-			managers[index].showAllCustomers();
+			managers[index].viewAllCustomersInfo();
 			break;
 
 		case 5:

@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include <iomanip>
 
 using namespace std;
 
@@ -19,7 +18,7 @@ public:
     Account();
     void readAccount();
     void displayAccountInfo() const;
-    void TabularAccInfo() const;
+    void tabularAccInfo() const;
     void modifyAccountInfo();
     void deleteAccount();
     void depositAmount();
@@ -31,11 +30,9 @@ public:
     bool getStatus() const;
     static int getAccCount();
 
-    // functions for integration of transaction class
-    void addTransactionAmount(float);
-    void subTransactionAmount(float);
-    void transferAmount();
-    void displayTransaction();
+    // functions for integration of transaction class using operator overloading
+    void operator++();
+    void operator--(int);
 };
 
 Account::Account()
@@ -85,11 +82,11 @@ void Account::displayAccountInfo() const
     cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
-void Account::TabularAccInfo() const
+void Account::tabularAccInfo() const
 {
     // printing data in a tabular form
-    cout << ' ' << account_num << setw(12) << " ";
-    cout << account_name << setw(16) << " ";
+    cout << ' ' << account_num << "           ";
+    cout << account_name << " \t    ";
     cout << balance << endl;
 }
 
@@ -158,27 +155,34 @@ int Account::getAccCount()
     return acc_count;
 }
 
-void Account::addTransactionAmount(float transaction_amount)
+// overloaded prefix ++ operator to add transaction amount to the account balance
+void Account::operator++()
 {
-    balance += transaction_amount;
-}
+    float transaction_amount;
 
-/*
-// -------operator overloading 'increment' with for loop?
-void operator++(int)
-{   float transaction_amount;
-
-    cout << "\nPlease enter the Transaction Amount: ";
+    cout << "\nPlease Confirm the Transaction Amount: ";
     cin >> transaction_amount;
 
-    for (int i = 0; i < transaction_amount; i++)
+    while (transaction_amount > 0)
+    {
         balance++;
+        transaction_amount--;
+    }
 }
-*/
 
-void Account::subTransactionAmount(float transaction_amount)
+// overloaded postfix -- operator to subtract transaction amount from the account balance
+void Account::operator--(int)
 {
-    balance -= transaction_amount;
+    float transaction_amount;
+
+    cout << "\nPlease Confirm the Transaction Amount: ";
+    cin >> transaction_amount;
+
+    while (transaction_amount > 0)
+    {
+        balance--;
+        transaction_amount--;
+    }
 }
 
 int Account::acc_count = 0;

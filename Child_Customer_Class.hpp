@@ -66,7 +66,20 @@ public:
         cout << "Phone Number: " << phone_number << endl;
         cout << "Customer ID: " << customer_id << endl;
         cout << "Number of Accounts: " << no_of_accounts << endl;
+        cout << "Number of Transactions: " << no_of_transactions << endl;
         cout << "----------------------------------------------------------------------------------------------" << endl;
+    }
+
+    void tabularCustomerInfo() const
+    {
+        // printing data in a tabular form
+        cout << ' ' << full_name << "     ";
+        cout << pin << "     ";
+        cout << cnic_number << "     ";
+        cout << phone_number << "     ";
+        cout << customer_id << "     \t";
+        cout << no_of_accounts << " \t\t\t    ";
+        cout << no_of_transactions << endl;
     }
 
     void deleteCustomer()

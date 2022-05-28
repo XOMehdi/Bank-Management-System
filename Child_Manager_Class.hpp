@@ -91,21 +91,27 @@ public:
         }
     }
 
-    void showAllCustomers()
-    {
-        for (int i = 0; i < 15; i++)
-        {
-            if (custmr[i].getStatus() == true)
-                custmr[i].displayCustomer();
-        }
-    }
-
     static int getManagerCount()
     {
         return manager_count;
     }
 
     //            ----------------------------VIEW ALL INFO FUNCTIONS-----------------------
+    void viewAllCustomersInfo()
+    {
+        cout << "\n-------------------------Accounts List---------------------------" << endl;
+        cout << "|Customer's Name --- Pin --- CNIC Number --- Phone Number --- Customer ID --- No of Accounts --- No of Transactions|" << endl;
+        for (int i = 0; i < Customer::getCustomerCount(); i++)
+        {
+            if (custmr[i].getStatus() == true)
+                custmr[i].tabularCustomerInfo();
+
+            else
+                cout << "                ---                     ---                 " << endl;
+        }
+        cout << "------------------------------------------------------------------" << endl;
+    }
+
     void viewAllAccountsInfo()
     {
         cout << "\n-------------------------Accounts List---------------------------" << endl;
@@ -113,7 +119,7 @@ public:
         for (int i = 0; i < Account::getAccCount(); i++)
         {
             if (accounts[i].getStatus() == true)
-                accounts[i].TabularAccInfo();
+                accounts[i].tabularAccInfo();
 
             else
                 cout << "                ---                     ---                 " << endl;
