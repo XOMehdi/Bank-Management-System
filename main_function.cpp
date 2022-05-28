@@ -476,9 +476,10 @@ void managerAllOptions(string managers_pin)
 				cout << "\t\t\t|  Choose an Option:                 " << endl;
 				cout << "\t\t\t|     1. Personal Info               " << endl;
 				cout << "\t\t\t|     2. Customer Operations         " << endl;
-				cout << "\t\t\t|     3. View All Accounts           " << endl;
-				cout << "\t\t\t|     4. View All Transactions       " << endl;
-				cout << "\t\t\t|     5. Exit This Menu              " << endl;
+				cout << "\t\t\t|     3. View All Customers          " << endl;
+				cout << "\t\t\t|     4. View All Accounts           " << endl;
+				cout << "\t\t\t|     5. View All Transactions       " << endl;
+				cout << "\t\t\t|     6. Exit This Menu              " << endl;
 				cout << "\t\t\t|------------------------------------" << endl;
 
 				cout << "\t\t\t\tEnter a number: ";
@@ -509,6 +510,23 @@ void managerAllOptions(string managers_pin)
 
 				case 3:
 				{
+					if (Customer::getCustomerCount() == 0)
+					{
+						cout << "\n\t\t\t'No Customer Exists in the system at this moment'\n";
+						break;
+					}
+
+					else
+					{
+						managers[i].viewAllCustomersInfo();
+						break;
+					}
+
+					break;
+				}
+
+				case 4:
+				{
 					if (Account::getAccCount() == 0)
 					{
 						cout << "\n\t\t\t'No Account has been opened at the moment'\n";
@@ -524,7 +542,7 @@ void managerAllOptions(string managers_pin)
 					break;
 				}
 
-				case 4:
+				case 5:
 				{
 					if (Transaction::getTransCount() == 0)
 					{
@@ -541,7 +559,7 @@ void managerAllOptions(string managers_pin)
 					break;
 				}
 
-				case 5:
+				case 6:
 					system("cls");
 					break;
 
@@ -550,7 +568,7 @@ void managerAllOptions(string managers_pin)
 					break;
 				}
 
-			} while (manager_opt != 5);
+			} while (manager_opt != 6);
 
 			break;
 		}
@@ -570,8 +588,7 @@ void managerOperateCustomer(int index)
 		cout << "\t\t\t|     1. View a Customer             " << endl;
 		cout << "\t\t\t|     2. Edit a Customer             " << endl;
 		cout << "\t\t\t|     3. Remove a Customer           " << endl;
-		cout << "\t\t\t|     4. View All Customers          " << endl;
-		cout << "\t\t\t|     5. Exit This Menu              " << endl;
+		cout << "\t\t\t|     4. Exit This Menu              " << endl;
 		cout << "\t\t\t|------------------------------------" << endl;
 
 		cout << "\t\t\t\tEnter a number: ";
@@ -592,10 +609,6 @@ void managerOperateCustomer(int index)
 			break;
 
 		case 4:
-			managers[index].viewAllCustomersInfo();
-			break;
-
-		case 5:
 			system("cls");
 			break;
 
@@ -603,7 +616,7 @@ void managerOperateCustomer(int index)
 			cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
 			break;
 		}
-	} while (choice != 5);
+	} while (choice != 4);
 }
 //           ------------------------------------------------------------------------
 

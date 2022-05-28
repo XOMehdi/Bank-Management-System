@@ -150,10 +150,10 @@ void Transaction::showTransaction() const
 {
     cout << "----------------------------------------------------------------------------------------------" << endl;
     cout << "Transaction Time: " << transaction_time << endl;
-    cout << "\nTransaction Date: " << transaction_date << endl;
-    cout << "\nTransferred By (AN): " << sender_accnum << endl;
-    cout << "\nTransferred To (AN): " << receiver_accnum << endl;
-    cout << "\nTransaction Amount: " << transaction_amount << endl;
+    cout << "Transaction Date: " << transaction_date << endl;
+    cout << "Transferred By (AN): " << sender_accnum << endl;
+    cout << "Transferred To (AN): " << receiver_accnum << endl;
+    cout << "Transaction Amount: " << transaction_amount << endl;
     cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
