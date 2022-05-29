@@ -17,7 +17,6 @@ Total 100 transactions
 */
 
 // account as a data member of customers (composition)?
-// virtual function/ in parent user class (polymorphism)?
 // manager/customer/account/transaction functions/classes unoptimized
 
 //            ----------------------------MAIN FUNCTIONS PROTOTYPES-----------------------

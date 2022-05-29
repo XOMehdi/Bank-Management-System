@@ -29,8 +29,11 @@ public:
     void deleteCustomer();
 
     // getter functions
-    string getCustomerID() const;
     static int getCustomerCount();
+    string getCustomerID() const;
+    string getName() const;
+    string getPin() const;
+    bool getStatus() const;
 
     // functions for integration of account class
     void openAccount();
@@ -122,14 +125,29 @@ void Customer::deleteCustomer()
     }
 }
 
+int Customer::getCustomerCount()
+{
+    return custmr_count;
+}
+
 string Customer::getCustomerID() const
 {
     return customer_id;
 }
 
-int Customer::getCustomerCount()
+string Customer::getName() const
 {
-    return custmr_count;
+    return full_name;
+}
+
+string Customer::getPin() const
+{
+    return pin;
+}
+
+bool Customer::getStatus() const
+{
+    return status;
 }
 
 // functions for integration of account class
@@ -199,7 +217,7 @@ void Customer::closeAllAccounts()
 {
     for (int i = 0; i < no_of_accounts; i++)
     {
-        cout << "\nEnter Your Account Number " << i + 1 << ": ";
+        cout << "\nEnter Account Number " << i + 1 << ": ";
         cin >> acc_num;
 
         for (int i = 0; i < 30; i++)

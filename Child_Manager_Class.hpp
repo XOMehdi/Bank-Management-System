@@ -21,6 +21,9 @@ public:
 
     // getter functions
     static int getManagerCount();
+    string getName() const;
+    string getPin() const;
+    bool getStatus() const;
 
     // functions for integration of customer class
     void showCustomer();
@@ -51,7 +54,7 @@ void Manager::displayManager() const
     User::displayUser();
 
     cout << "Manager ID: " << manager_id << endl;
-    cout << "Total number of Customers: " << total_customers << endl;
+    cout << "Total number of Customers: " << Customer::getCustomerCount() << endl;
     cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
@@ -64,6 +67,21 @@ void Manager::modifyManagerInfo()
     User::modifyUserInfo();
 
     cout << "----------------------------------------------------------------------------------------------" << endl;
+}
+
+string Manager::getName() const
+{
+    return full_name;
+}
+
+string Manager::getPin() const
+{
+    return pin;
+}
+
+bool Manager::getStatus() const
+{
+    return status;
 }
 
 // functions for integration of customer class

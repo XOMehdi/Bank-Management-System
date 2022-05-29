@@ -16,10 +16,10 @@ public:
     void displayUser() const;
     void modifyUserInfo();
 
-    // getter function
-    string getPin() const;
-    bool getStatus() const;
-    string getName() const;
+    // pure virtual getter functions in order to implement polymorphism
+    virtual string getName() const = 0;
+    virtual string getPin() const = 0;
+    virtual bool getStatus() const = 0;
 };
 
 // all member functions definitions
@@ -58,21 +58,6 @@ void User::displayUser() const
 {
     cout << "Name: " << full_name << endl;
     cout << "Pin: " << pin << endl;
-}
-
-string User::getPin() const
-{
-    return pin;
-}
-
-bool User::getStatus() const
-{
-    return status;
-}
-
-string User::getName() const
-{
-    return full_name;
 }
 
 #endif /* Parent_User_Class */
