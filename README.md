@@ -1,3 +1,3 @@
 # Bank-Management-System
 
-run the main function to test the program
+run the main_function to test the program
