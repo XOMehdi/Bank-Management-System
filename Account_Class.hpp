@@ -35,6 +35,7 @@ public:
     void operator--(int);
 };
 
+// all member functions definitions
 Account::Account()
 {
     status = false;
@@ -185,6 +186,7 @@ void Account::operator--(int)
     }
 }
 
+// initiallizing static count data member
 int Account::acc_count = 0;
 
 Account accounts[30];

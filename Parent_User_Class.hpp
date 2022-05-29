@@ -1,20 +1,20 @@
-#ifndef Parent_Human_Class_hpp
-#define Parent_Human_Class_hpp
+#ifndef Parent_User_Class_hpp
+#define Parent_User_Class_hpp
 
 #include <iostream>
 using namespace std;
 
-class Human
+class User
 {
 protected:
     string full_name, pin;
     bool status;
 
 public:
-    Human();
-    void readHuman();
-    void displayHuman() const;
-    void modifyHumanInfo();
+    User();
+    void readUser();
+    void displayUser() const;
+    void modifyUserInfo();
 
     // getter function
     string getPin() const;
@@ -22,14 +22,15 @@ public:
     string getName() const;
 };
 
-Human::Human()
+// all member functions definitions
+User::User()
 {
     full_name = "  ";
     pin = "  ";
     status = false;
 }
 
-void Human::readHuman()
+void User::readUser()
 {
     status = true;
 
@@ -42,7 +43,7 @@ void Human::readHuman()
     cin >> pin;
 }
 
-void Human::modifyHumanInfo()
+void User::modifyUserInfo()
 {
     cin.ignore();
 
@@ -53,25 +54,25 @@ void Human::modifyHumanInfo()
     cin >> pin;
 }
 
-void Human::displayHuman() const
+void User::displayUser() const
 {
     cout << "Name: " << full_name << endl;
     cout << "Pin: " << pin << endl;
 }
 
-string Human::getPin() const
+string User::getPin() const
 {
     return pin;
 }
 
-bool Human::getStatus() const
+bool User::getStatus() const
 {
     return status;
 }
 
-string Human::getName() const
+string User::getName() const
 {
     return full_name;
 }
 
-#endif /* Parent_Human_Class */
+#endif /* Parent_User_Class */

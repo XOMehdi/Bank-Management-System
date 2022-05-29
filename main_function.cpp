@@ -1,4 +1,4 @@
-#include "Parent_Human_Class.hpp"
+#include "Parent_User_Class.hpp"
 #include "Child_Manager_Class.hpp"
 #include "Child_Customer_Class.hpp"
 #include "Account_Class.hpp"
@@ -11,12 +11,13 @@ using namespace std;
 Total 3 managers
 Total 15 customers
 Total 30 accounts
-Total 50 transactions
+Total 100 transactions
 
 	"VALUES/SIZES CAN BE ALTERED"
 */
 
 // account as a data member of customers (composition)?
+// virtual function/ in parent user class (polymorphism)?
 // manager/customer/account/transaction functions/classes unoptimized
 
 //            ----------------------------MAIN FUNCTIONS PROTOTYPES-----------------------
@@ -372,7 +373,7 @@ void transactionOptions(int index)
 		{
 		case 1:
 		{
-			if (Transaction::getTransCount() == 50)
+			if (Transaction::getTransCount() == 100)
 			{
 				cout << "\t\t\t\t\tSorry! Transaction Limit is Reached\n";
 				cout << "\t\t\t\t\tNo more Transactions can be made!\n";

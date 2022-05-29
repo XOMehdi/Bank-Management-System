@@ -28,6 +28,7 @@ public:
     string getSenderAccNo();
 };
 
+// all member functions definitions
 Transaction::Transaction()
 {
     total_accounts = Account::getAccCount();
@@ -198,8 +199,9 @@ string Transaction::getSenderAccNo()
     return sender_accnum;
 }
 
+// initiallizing static count data member
 int Transaction::transactions_count = 0;
 
-Transaction trans[50];
+Transaction trans[100];
 
 #endif /* Transaction_Class_hpp */
