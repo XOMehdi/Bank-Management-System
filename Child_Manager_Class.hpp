@@ -11,7 +11,6 @@ class Manager : public User
 {
 private:
     string manager_id, customer_id;
-    int total_customers;
     static int manager_count;
 
 public:
@@ -44,8 +43,6 @@ void Manager::setData(string full_name, string pin)
 
     manager_count++;
     manager_id = "BkManager" + to_string(manager_count);
-
-    total_customers = Customer::getCustomerCount();
 }
 
 void Manager::displayManager() const
@@ -67,21 +64,6 @@ void Manager::modifyManagerInfo()
     User::modifyUserInfo();
 
     cout << "----------------------------------------------------------------------------------------------" << endl;
-}
-
-string Manager::getName() const
-{
-    return full_name;
-}
-
-string Manager::getPin() const
-{
-    return pin;
-}
-
-bool Manager::getStatus() const
-{
-    return status;
 }
 
 // functions for integration of customer class
@@ -126,6 +108,21 @@ void Manager::removeCustomer()
             cout << "\nCustomer is Successfully Removed!";
         }
     }
+}
+
+string Manager::getName() const
+{
+    return full_name;
+}
+
+string Manager::getPin() const
+{
+    return pin;
+}
+
+bool Manager::getStatus() const
+{
+    return status;
 }
 
 int Manager::getManagerCount()

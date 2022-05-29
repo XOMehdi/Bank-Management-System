@@ -105,14 +105,14 @@ void Transaction::makeTransaction()
 
     if (sender_cond == true && receiver_cond == true)
     {
-        // overloaded operators to add/subtract transaction amounts to/from the balance
+        // overloaded operators to add/subtract transaction amounts to/from the accounts' balance
         ++accounts[receiver_index];
         accounts[sender_index]--;
 
         cout << "----------------------------------------------------------------------------------------------" << endl;
         cout << "Transaction Successful!!!" << endl;
         cout << "An amount of $" << transaction_amount << " successfully transferred to an account with Account Number: " << receiver_accnum << endl;
-        cout << "----------------------------------------------------------------------------------------------" << endl;
+        cout << "\n----------------------------------------------------------------------------------------------" << endl;
         cout << "Your Bank Balance before Transaction: " << '$' << accounts[sender_index].getBalance() + transaction_amount << endl;
         cout << "Your Bank Balance after Transaction: " << '$' << accounts[sender_index].getBalance() << endl;
         cout << "----------------------------------------------------------------------------------------------" << endl;
