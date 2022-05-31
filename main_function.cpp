@@ -16,19 +16,15 @@ Total 100 transactions
 	"VALUES/SIZES CAN BE ALTERED"
 */
 
-// account as a data member of customers (composition)?
 // manager/customer/account/transaction functions/classes unoptimized
 
 //            ----------------------------MAIN FUNCTIONS PROTOTYPES-----------------------
-void customerAllOptions(string);
-void accountMenu(int);
-void accountOperations(int);
-void accountSettings(int);
-void transactionOptions(int);
-
-void managerAllOptions(string);
-void managerSettings(int);
-void managerOperateCustomer(int);
+void managerAllControls(string manager_pin);
+void customerAllOptions(string customer_pin);
+void accountMenu(int index);
+void accountOperations(int index);
+void accountSettings(int index);
+void transactionOptions(int index);
 //            ------------------------------------------------------------------------
 
 //            ----------------------------MAIN FUNCTION-----------------------
@@ -36,9 +32,9 @@ int main()
 {
 	// --------------------------------------------
 	// 3 fixed managers with unique passwords
-	managers[0].setData("Moosa Muhy-ud-Din", "8765");
-	managers[1].setData("Muhammad Mehdi", "8520");
-	managers[2].setData("Hassan Kaamchor", "1234");
+	managers[0].setData("Moosa", "Muhy-ud-Din", "8765");
+	managers[1].setData("Muhammad", "Mehdi", "8520");
+	managers[2].setData("Hassan", "Kaamchor", "1234");
 	// --------------------------------------------
 
 	int mangOrCust, signOrLog;
@@ -69,7 +65,7 @@ int main()
 			cin >> manager_pin;
 			system("cls");
 
-			managerAllOptions(manager_pin);
+			managerAllControls(manager_pin);
 			break;
 		}
 
@@ -109,7 +105,6 @@ int main()
 								break;
 							}
 						}
-						// system("cls");
 						break;
 					}
 				}
@@ -164,19 +159,161 @@ int main()
 	return 0;
 }
 
-//                      --------------------------FUNCTIONS DEFINITIONS-----------------------
+//                      --------------------------ALL FUNCTIONS DEFINITIONS-----------------------
+
+//            ----------------------------ALL CONTROLS FOR MANAGERS FUNCTION-----------------------
+void managerAllControls(string manager_pin)
+{
+	int manager_opt;
+	for (int i = 0; i < Manager::getManagerCount(); i++)
+	{
+
+		if (manager_pin == managers[i].getPin())
+		{
+			do
+			{
+				cout << "\n\n\t\t\t\tWelcome Mr '" << managers[i].getFullName() << "'\n";
+				cout << "\t\t\t|------------------------------------" << endl;
+				cout << "\t\t\t|  Choose an Option:                 " << endl;
+				cout << "\t\t\t|     1. View Personal Info          " << endl;
+				cout << "\t\t\t|     2. Edit Personal Info          " << endl;
+				cout << "\t\t\t|     3. Edit a Customer's Info      " << endl;
+				cout << "\t\t\t|     4. Remove a Customer           " << endl;
+				cout << "\t\t\t|     5. View All Customers          " << endl;
+				cout << "\t\t\t|     6. View All Accounts           " << endl;
+				cout << "\t\t\t|     7. View All Transactions       " << endl;
+				cout << "\t\t\t|     8. Exit This Menu              " << endl;
+				cout << "\t\t\t|------------------------------------" << endl;
+
+				cout << "\t\t\t\tEnter a number: ";
+				cin >> manager_opt;
+				system("cls");
+
+				switch (manager_opt)
+				{
+				case 1:
+					managers[i].displayManager();
+					break;
+
+				case 2:
+					managers[i].modifyManagerInfo();
+					break;
+
+				case 3:
+				{
+					if (Customer::getCustomerCount() == 0)
+					{
+						cout << "\n\t\t\t'No Customer Exists in the system at this moment'\n";
+						break;
+					}
+
+					else
+					{
+						managers[i].viewAllCustomersInfo();
+						managers[i].editCustomer();
+						break;
+					}
+
+					break;
+				}
+
+				case 4:
+				{
+					if (Customer::getCustomerCount() == 0)
+					{
+						cout << "\n\t\t\t'No Customer Exists in the system at this moment'\n";
+						break;
+					}
+
+					else
+					{
+						managers[i].viewAllCustomersInfo();
+						managers[i].removeCustomer();
+						break;
+					}
+
+					break;
+				}
+
+				case 5:
+				{
+					if (Customer::getCustomerCount() == 0)
+					{
+						cout << "\n\t\t\t'No Customer Exists in the system at this moment'\n";
+						break;
+					}
+
+					else
+					{
+						managers[i].viewAllCustomersInfo();
+						break;
+					}
+
+					break;
+				}
+
+				case 6:
+				{
+					if (Account::getAccCount() == 0)
+					{
+						cout << "\n\t\t\t'No Account has been opened at the moment'\n";
+						break;
+					}
+
+					else
+					{
+						managers[i].viewAllAccountsInfo();
+						break;
+					}
+
+					break;
+				}
+
+				case 7:
+				{
+					if (Transaction::getTransCount() == 0)
+					{
+						cout << "\n\t\t\t'No Transaction has been been at the moment'\n";
+						break;
+					}
+
+					else
+					{
+						managers[i].viewAllTransactions();
+						break;
+					}
+
+					break;
+				}
+
+				case 8:
+					system("cls");
+					break;
+
+				default:
+					cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
+					break;
+				}
+
+			} while (manager_opt != 8);
+
+			break;
+		}
+	}
+}
+//           ------------------------------------------------------------------------
 
 //            ----------------------------ALL CONTROLS FOR CUSTOMERS FUNCTION-----------------------
-void customerAllOptions(string cust_pin)
+void customerAllOptions(string customer_pin)
 {
 	int cust_opt;
 	for (int i = 0; i < 15; i++)
 	{
-		if (cust_pin == custmr[i].getPin())
+		if (customer_pin == custmr[i].getPin())
 		{
 			do
 			{
-				cout << "\n\n\t\t\t\tWelcome Mr '" << custmr[i].getName() << "'\n";
+				cout << "\n\n\t\t\t\tWelcome Mr '" << custmr[i].getFullName() << "'\n";
 				cout << "\t\t\t|------------------------------------" << endl;
 				cout << "\t\t\t|  Choose an Option:                 " << endl;
 				cout << "\t\t\t|     1. View Personal Info          " << endl;
@@ -188,6 +325,7 @@ void customerAllOptions(string cust_pin)
 
 				cout << "\t\t\t\tEnter a number: ";
 				cin >> cust_opt;
+				system("cls");
 
 				switch (cust_opt)
 				{
@@ -239,6 +377,7 @@ void accountMenu(int index)
 
 		cout << "\t\t\t\tEnter a number: ";
 		cin >> op;
+		system("cls");
 
 		switch (op)
 		{
@@ -323,6 +462,7 @@ void accountOperations(int index)
 
 		cout << "\t\t\t\tEnter a number: ";
 		cin >> key;
+		system("cls");
 
 		switch (key)
 		{
@@ -367,6 +507,7 @@ void transactionOptions(int index)
 
 		cout << "\t\t\t\tEnter a number: ";
 		cin >> choice;
+		system("cls");
 
 		switch (choice)
 		{
@@ -432,6 +573,7 @@ void accountSettings(int index)
 
 		cout << "\t\t\t\tEnter a number: ";
 		cin >> option;
+		system("cls");
 
 		switch (option)
 		{
@@ -457,204 +599,5 @@ void accountSettings(int index)
 		}
 
 	} while (option != 4);
-}
-//           ------------------------------------------------------------------------
-
-//            ----------------------------ALL CONTROLS FOR MANAGERS FUNCTION-----------------------
-void managerAllOptions(string managers_pin)
-{
-	int manager_opt;
-	for (int i = 0; i < Manager::getManagerCount(); i++)
-	{
-
-		if (managers_pin == managers[i].getPin())
-		{
-			do
-			{
-				cout << "\n\n\t\t\t\tWelcome Mr '" << managers[i].getName() << "'\n";
-				cout << "\t\t\t|------------------------------------" << endl;
-				cout << "\t\t\t|  Choose an Option:                 " << endl;
-				cout << "\t\t\t|     1. Personal Info               " << endl;
-				cout << "\t\t\t|     2. Customer Operations         " << endl;
-				cout << "\t\t\t|     3. View All Customers          " << endl;
-				cout << "\t\t\t|     4. View All Accounts           " << endl;
-				cout << "\t\t\t|     5. View All Transactions       " << endl;
-				cout << "\t\t\t|     6. Exit This Menu              " << endl;
-				cout << "\t\t\t|------------------------------------" << endl;
-
-				cout << "\t\t\t\tEnter a number: ";
-				cin >> manager_opt;
-
-				switch (manager_opt)
-				{
-				case 1:
-					managerSettings(i);
-					break;
-
-				case 2:
-				{
-					if (Customer::getCustomerCount() == 0)
-					{
-						cout << "\n\t\t\t'No Customer Exists in the system at this moment'\n";
-						break;
-					}
-
-					else
-					{
-						managerOperateCustomer(i);
-						break;
-					}
-
-					break;
-				}
-
-				case 3:
-				{
-					if (Customer::getCustomerCount() == 0)
-					{
-						cout << "\n\t\t\t'No Customer Exists in the system at this moment'\n";
-						break;
-					}
-
-					else
-					{
-						managers[i].viewAllCustomersInfo();
-						break;
-					}
-
-					break;
-				}
-
-				case 4:
-				{
-					if (Account::getAccCount() == 0)
-					{
-						cout << "\n\t\t\t'No Account has been opened at the moment'\n";
-						break;
-					}
-
-					else
-					{
-						managers[i].viewAllAccountsInfo();
-						break;
-					}
-
-					break;
-				}
-
-				case 5:
-				{
-					if (Transaction::getTransCount() == 0)
-					{
-						cout << "\n\t\t\t'No Transaction has been been at the moment'\n";
-						break;
-					}
-
-					else
-					{
-						managers[i].viewAllTransactions();
-						break;
-					}
-
-					break;
-				}
-
-				case 6:
-					system("cls");
-					break;
-
-				default:
-					cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
-					break;
-				}
-
-			} while (manager_opt != 6);
-
-			break;
-		}
-	}
-}
-//           ------------------------------------------------------------------------
-
-//            ----------------------------CUSTOMER OPTIONS FOR MANAGER FUNCTION-----------------------
-void managerOperateCustomer(int index)
-{
-	int choice;
-	do
-	{
-		cout << "\n\n\t\t\t   Customer Options for Manager\n";
-		cout << "\t\t\t|------------------------------------" << endl;
-		cout << "\t\t\t| Choose an Option:                  " << endl;
-		cout << "\t\t\t|     1. View a Customer             " << endl;
-		cout << "\t\t\t|     2. Edit a Customer             " << endl;
-		cout << "\t\t\t|     3. Remove a Customer           " << endl;
-		cout << "\t\t\t|     4. Exit This Menu              " << endl;
-		cout << "\t\t\t|------------------------------------" << endl;
-
-		cout << "\t\t\t\tEnter a number: ";
-		cin >> choice;
-
-		switch (choice)
-		{
-		case 1:
-			managers[index].showCustomer();
-			break;
-
-		case 2:
-			managers[index].editCustomer();
-			break;
-
-		case 3:
-			managers[index].removeCustomer();
-			break;
-
-		case 4:
-			system("cls");
-			break;
-
-		default:
-			cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
-			break;
-		}
-	} while (choice != 4);
-}
-//           ------------------------------------------------------------------------
-
-//            ----------------------------MANAGER'S DATA VIEW/EDIT FUNCTION-----------------------
-void managerSettings(int index)
-{
-	int opt;
-	do
-	{
-		cout << "\n\n\t\t\t\tManager Options\n";
-		cout << "\t\t\t|------------------------------------" << endl;
-		cout << "\t\t\t| Choose an Option:                  " << endl;
-		cout << "\t\t\t|     1. View Personal Info          " << endl;
-		cout << "\t\t\t|     2. Edit Personal Info          " << endl;
-		cout << "\t\t\t|     3. Exit This Menu              " << endl;
-		cout << "\t\t\t|------------------------------------" << endl;
-
-		cout << "\t\t\t\tEnter a number: ";
-		cin >> opt;
-
-		switch (opt)
-		{
-		case 1:
-			managers[index].displayManager();
-			break;
-
-		case 2:
-			managers[index].modifyManagerInfo();
-			break;
-
-		case 3:
-			system("cls");
-			break;
-
-		default:
-			cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
-			break;
-		}
-	} while (opt != 3);
 }
 //           ------------------------------------------------------------------------

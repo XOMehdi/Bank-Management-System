@@ -24,14 +24,14 @@ public:
 
     void readCustomer();
     void modifyCustomerInfo();
-    void displayCustomer() const;
-    void tabularCustomerInfo() const;
+    void displayCustomer();
+    void tabularCustomerInfo();
     void deleteCustomer();
 
     // getter functions
     static int getCustomerCount();
     string getCustomerID() const;
-    string getName() const;
+    string getFullName();
     string getPin() const;
     bool getStatus() const;
 
@@ -83,7 +83,7 @@ void Customer::modifyCustomerInfo()
     cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
-void Customer::displayCustomer() const
+void Customer::displayCustomer()
 {
     cout << "\n----------------------------------------------------------------------------------------------" << endl;
     User::displayUser();
@@ -96,10 +96,10 @@ void Customer::displayCustomer() const
     cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
-void Customer::tabularCustomerInfo() const
+void Customer::tabularCustomerInfo()
 {
     // printing data in a tabular form
-    cout << ' ' << full_name << "     ";
+    cout << ' ' << full_name.getFullName() << "     ";
     cout << pin << "     ";
     cout << cnic_number << "     ";
     cout << phone_number << "     ";
@@ -110,7 +110,7 @@ void Customer::tabularCustomerInfo() const
 
 void Customer::deleteCustomer()
 {
-    full_name = "  ";
+    full_name.setFullName("  ", "  ");
     pin = "  ";
     custmr_count--;
     status = false;
@@ -135,9 +135,9 @@ string Customer::getCustomerID() const
     return customer_id;
 }
 
-string Customer::getName() const
+string Customer::getFullName()
 {
-    return full_name;
+    return full_name.getFullName();
 }
 
 string Customer::getPin() const

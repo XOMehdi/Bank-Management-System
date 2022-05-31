@@ -14,13 +14,13 @@ private:
     static int manager_count;
 
 public:
-    void setData(string full_name, string pin);
-    void displayManager() const;
+    void setData(string first_name, string last_name, string pin);
+    void displayManager();
     void modifyManagerInfo();
 
     // getter functions
     static int getManagerCount();
-    string getName() const;
+    string getFullName();
     string getPin() const;
     bool getStatus() const;
 
@@ -36,16 +36,16 @@ public:
 };
 
 // all member functions definitions
-void Manager::setData(string full_name, string pin)
+void Manager::setData(string first_name, string last_name, string pin)
 {
-    this->full_name = full_name;
+    this->full_name.setFullName(first_name, last_name);
     this->pin = pin;
 
     manager_count++;
     manager_id = "BkManager" + to_string(manager_count);
 }
 
-void Manager::displayManager() const
+void Manager::displayManager()
 {
     cout << "\n--------------------------------------------------------------------------------------------" << endl;
     User::displayUser();
@@ -67,20 +67,6 @@ void Manager::modifyManagerInfo()
 }
 
 // functions for integration of customer class
-void Manager::showCustomer()
-{
-    cout << "\nEnter the Customer's ID: ";
-    cin >> customer_id;
-
-    for (int i = 0; i < 15; i++)
-    {
-        if (customer_id == custmr[i].getCustomerID())
-        {
-            custmr[i].displayCustomer();
-        }
-    }
-}
-
 void Manager::editCustomer()
 {
     cout << "\nEnter the Customer's ID: ";
@@ -110,30 +96,10 @@ void Manager::removeCustomer()
     }
 }
 
-string Manager::getName() const
-{
-    return full_name;
-}
-
-string Manager::getPin() const
-{
-    return pin;
-}
-
-bool Manager::getStatus() const
-{
-    return status;
-}
-
-int Manager::getManagerCount()
-{
-    return manager_count;
-}
-
 //            ----------------------------VIEW ALL INFO FUNCTIONS-----------------------
 void Manager::viewAllCustomersInfo()
 {
-    cout << "\n-------------------------Accounts List---------------------------" << endl;
+    cout << "\n-----------------------------------------------Customers List-----------------------------------------------------------" << endl;
     cout << "|Customer's Name --- Pin --- CNIC Number --- Phone Number --- Customer ID --- No of Accounts --- No of Transactions|" << endl;
     for (int i = 0; i < Customer::getCustomerCount(); i++)
     {
@@ -143,7 +109,7 @@ void Manager::viewAllCustomersInfo()
         else
             cout << "                ---                     ---                 " << endl;
     }
-    cout << "------------------------------------------------------------------" << endl;
+    cout << "--------------------------------------------------------------------------------------------------------------------------" << endl;
 }
 
 void Manager::viewAllAccountsInfo()
@@ -173,7 +139,27 @@ void Manager::viewAllTransactions()
         else
             cout << "                  ---                  ---                     ---                     ---                    " << endl;
     }
-    cout << "------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
+}
+
+string Manager::getFullName()
+{
+    return full_name.getFullName();
+}
+
+string Manager::getPin() const
+{
+    return pin;
+}
+
+bool Manager::getStatus() const
+{
+    return status;
+}
+
+int Manager::getManagerCount()
+{
+    return manager_count;
 }
 
 // initiallizing static count data member
