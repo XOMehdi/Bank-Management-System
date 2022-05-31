@@ -1,5 +1,5 @@
 SHORT DESCRIPTION:
-    A Bank Management System with a large number of functionalities ranging from creating an account to making transactions, different profiles and keeping a record of all activities and being able to manage them effectively.
+A Bank Management System with a large number of functionalities ranging from creating an account to making transactions, different profiles and keeping a record of all activities and being able to manage them effectively.
 
     HOW TO USE THE SYSTEM:
         1) Open the "main_function.cpp" file and run the program.
