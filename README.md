@@ -1,9 +1,9 @@
 SHORT DESCRIPTION:
     A Bank Management System with a large number of functionalities ranging from creating an account to making transactions, different profiles and keeping a record of all activities and being able to manage them effectively.
 
-HOW TO USE THE SYSTEM:
-    1) Open the "main_function.cpp" file and run the program.
-    2) Choose whether to use the system as a "Manager" or a "Customer" (choose "Customer" first in order to make use of all functionalities of the system).
+    HOW TO USE THE SYSTEM:
+        1) Open the "main_function.cpp" file and run the program.
+        2) Choose whether to use the system as a "Manager" or a "Customer" (choose "Customer" first in order to make use of all functionalities of the system).
 
     AS A CUSTOMER:
         3)  Next, select "Sign Up" from the availabe options (remember your pin). 
@@ -18,9 +18,9 @@ HOW TO USE THE SYSTEM:
         10) You can see all of the accounts created, and all of the transactions made by those accounts.
 
 
-PROBLEMS I FACED WHILE MAKING THE PROJECT:
-    1) Identifying 5 proper and required classes.
-    2) Lack of management and collaboration between team members.
-    3) Figuring out the functionalities and the user interface.
-    4) Coming up with logic for integrating different related classes/objects together.
-    5) Understanding and making use of Git and GitHub for storing different versions of the project.
+    PROBLEMS I FACED WHILE MAKING THE PROJECT:
+        1) Identifying 5 proper and required classes.
+        2) Lack of management and collaboration between team members.
+        3) Figuring out the functionalities and the user interface.
+        4) Coming up with logic for integrating different related classes/objects together.
+        5) Understanding and making use of Git and GitHub for storing different versions of the project.
