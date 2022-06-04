@@ -100,7 +100,7 @@ void Manager::removeCustomer()
 void Manager::viewAllCustomersInfo()
 {
     cout << "\n-----------------------------------------------Customers List-----------------------------------------------------------" << endl;
-    cout << "|Customer's Name --- Pin --- CNIC Number --- Phone Number --- Customer ID --- No of Accounts --- No of Transactions|" << endl;
+    cout << "|Customer's Name --- Pin --- Phone Number --- Customer ID --- No of Accounts --- No of Transactions|" << endl;
     for (int i = 0; i < Customer::getCustomerCount(); i++)
     {
         if (custmr[i].getStatus() == true)

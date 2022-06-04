@@ -228,6 +228,7 @@ void managerAllControls(string manager_pin)
 					else
 					{
 						managers[i].viewAllCustomersInfo();
+						managers[i].viewAllAccountsInfo();
 						managers[i].removeCustomer();
 						break;
 					}

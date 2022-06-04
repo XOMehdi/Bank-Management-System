@@ -61,7 +61,7 @@ void User::readUser()
     cout << "Please enter your First Name: ";
     cin >> fname;
 
-    cout << "Please enter your Last Name: ";
+    cout << "\nPlease enter your Last Name: ";
     cin >> lname;
 
     full_name.setFullName(fname, lname);

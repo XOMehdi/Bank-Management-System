@@ -11,7 +11,7 @@ using namespace std;
 class Customer : public User
 {
 private:
-    string customer_id, cnic_number, phone_number, acc_num;
+    string customer_id, phone_number, acc_num;
     int no_of_accounts, no_of_transactions;
     static int custmr_count;
 
@@ -59,9 +59,6 @@ void Customer::readCustomer()
     cout << "\n----------------------------------------------------------------------------------------------" << endl;
     User::readUser();
 
-    cout << "\nPlease enter your CNIC Number: ";
-    cin >> cnic_number;
-
     cout << "\nPlease enter your Phone Number: ";
     cin >> phone_number;
 
@@ -88,7 +85,6 @@ void Customer::displayCustomer()
     cout << "\n----------------------------------------------------------------------------------------------" << endl;
     User::displayUser();
 
-    cout << "CNIC Number: " << cnic_number << endl;
     cout << "Phone Number: " << phone_number << endl;
     cout << "Customer ID: " << customer_id << endl;
     cout << "Number of Accounts: " << no_of_accounts << endl;
@@ -101,8 +97,7 @@ void Customer::tabularCustomerInfo()
     // printing data in a tabular form
     cout << ' ' << full_name.getFullName() << "     ";
     cout << pin << "     ";
-    cout << cnic_number << "     ";
-    cout << phone_number << "     ";
+    cout << phone_number << "       ";
     cout << customer_id << "     \t";
     cout << no_of_accounts << " \t\t\t    ";
     cout << no_of_transactions << endl;
@@ -115,7 +110,6 @@ void Customer::deleteCustomer()
     custmr_count--;
     status = false;
     customer_id = "  ";
-    cnic_number = "  ";
     phone_number = "  ";
 
     if (no_of_accounts > 0)

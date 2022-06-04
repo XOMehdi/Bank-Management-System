@@ -159,6 +159,7 @@ int Account::getAccCount()
 // overloaded prefix ++ operator to add transaction amount to the account balance
 void Account::operator++()
 {
+    // a temporary variable just to get transaction amount from user
     float transaction_amount;
 
     cout << "\nPlease Confirm the Transaction Amount: ";
@@ -174,9 +175,10 @@ void Account::operator++()
 // overloaded postfix -- operator to subtract transaction amount from the account balance
 void Account::operator--(int)
 {
+    // a temporary variable just to get transaction amount from user
     float transaction_amount;
 
-    cout << "\nPlease Confirm the Transaction Amount: ";
+    cout << "\nPlease Confirm the Transaction Amount Again: ";
     cin >> transaction_amount;
 
     while (transaction_amount > 0)
