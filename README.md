@@ -16,8 +16,6 @@
 
 
     PROBLEMS I FACED WHILE MAKING THE PROJECT:
-        1) Identifying 5 proper and required classes.
-        2) Lack of management and collaboration between team members.
-        3) Figuring out the functionalities and the user interface.
-        4) Coming up with logic for integrating different related classes/objects together.
-        5) Understanding and making use of Git and GitHub for storing different versions of the project.
+        1) Lack of management and collaboration between team members.
+        2) Figuring out the functionalities and the user interface.
+        3) Coming up with logic for integrating different related classes/objects together.
