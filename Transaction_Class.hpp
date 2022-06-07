@@ -202,6 +202,6 @@ string Transaction::getSenderAccNo()
 // initiallizing static count data member
 int Transaction::transactions_count = 0;
 
-Transaction trans[100];
+Transaction trans[TRANSACTIONS_LIMIT];
 
 #endif /* Transaction_Class_hpp */

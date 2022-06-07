@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-// -------------------------NAME CLASS WHOSE OBJECT IS dTO BE USED AS AN ATTRIBUTE IN USER CLASS FOR COMPOSITION--------------------------------
+// -------------------------NAME CLASS WHOSE OBJECT IS TO BE USED AS AN ATTRIBUTE IN USER CLASS FOR COMPOSITION------------------------
 class Name
 {
 private:
@@ -23,7 +23,7 @@ public:
         return first_name + " " + last_name;
     }
 };
-// -----------------------------------------------------------------------------
+//                              -----------------------------------------------------------------------------
 
 class User
 {

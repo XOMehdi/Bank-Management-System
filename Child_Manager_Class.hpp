@@ -51,7 +51,9 @@ void Manager::displayManager()
     User::displayUser();
 
     cout << "Manager ID: " << manager_id << endl;
-    cout << "Total number of Customers: " << Customer::getCustomerCount() << endl;
+    cout << "Number of Customers Logged in the System: " << Customer::getCustomerCount() << endl;
+    cout << "Number of Accounts Opened in the System: " << Account::getAccCount() << endl;
+    cout << "Number of Transactions Made through the System: " << Transaction::getTransCount() << endl;
     cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
@@ -165,6 +167,6 @@ int Manager::getManagerCount()
 // initiallizing static count data member
 int Manager::manager_count = 0;
 
-Manager managers[3];
+Manager managers[MANAGERS_LIMIT];
 
 #endif /* Child_Manager_Class_hpp */

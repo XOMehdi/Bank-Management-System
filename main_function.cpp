@@ -7,16 +7,12 @@
 #include <iostream>
 using namespace std;
 
-/*
-Total 3 managers
-Total 15 customers
-Total 30 accounts
-Total 100 transactions
-
-	"VALUES/SIZES CAN BE ALTERED"
-*/
-
-// manager/customer/account/transaction functions/classes unoptimized
+//	DECLARING LENGTHS/SIZES OF ARRAYS FOR ALL OBJECTS
+const int MANAGERS_LIMIT = 3;
+const int CUSTOMERS_LIMIT = 3;
+const int ACCOUNTS_LIMIT = 3;
+const int TRANSACTIONS_LIMIT = 3;
+//	VALUES/SIZES CAN BE ALTERED
 
 //            ----------------------------MAIN FUNCTIONS PROTOTYPES-----------------------
 void managerAllControls(string manager_pin);

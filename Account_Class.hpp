@@ -50,10 +50,9 @@ void Account::readAccount()
     cout << "----------------------------------------------------------------------------------------------" << endl;
     cout << "Please set an Account Number (8 digits): ";
     cin >> account_num;
-    cin.ignore();
 
     cout << "\nPlease set a Name of The Account Holder: ";
-    getline(cin, account_name);
+    getline(cin >> ws, account_name);
 
     cout << "\nPlease enter an Amount to be added to the Account Balance : ";
     cin >> balance;
@@ -67,10 +66,9 @@ void Account::modifyAccountInfo()
     cout << "----------------------------------------------------------------------------------------------" << endl;
     cout << "Change Account Number (8 digits): ";
     cin >> account_num;
-    cin.ignore();
 
     cout << "\nChange Account Holder's Name : ";
-    getline(cin, account_name);
+    getline(cin >> ws, account_name);
     cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
@@ -191,6 +189,6 @@ void Account::operator--(int)
 // initiallizing static count data member
 int Account::acc_count = 0;
 
-Account accounts[30];
+Account accounts[ACCOUNTS_LIMIT];
 
 #endif /* Account_Class_hpp */

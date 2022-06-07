@@ -308,6 +308,6 @@ void Customer::removeTransactions()
 // initiallizing static count data member
 int Customer::custmr_count = 0;
 
-Customer custmr[15];
+Customer custmr[CUSTOMERS_LIMIT];
 
 #endif /* Child_Customer_Class_hpp */
