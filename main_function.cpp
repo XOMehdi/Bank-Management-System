@@ -7,16 +7,17 @@
 #include <iostream>
 using namespace std;
 
-//	DECLARING LENGTHS/SIZES OF ARRAYS FOR ALL OBJECTS
-const int MANAGERS_LIMIT = 3;
-const int CUSTOMERS_LIMIT = 3;
-const int ACCOUNTS_LIMIT = 3;
-const int TRANSACTIONS_LIMIT = 3;
-//	VALUES/SIZES CAN BE ALTERED
+/*	LIMIT OF OBJECTS IN THE SYSTEM
+Total 3 managers
+Total 15 customers
+Total 30 accounts
+Total 100 transactions
+	VALUES/SIZES CAN BE ALTERED
+*/
 
 //            ----------------------------MAIN FUNCTIONS PROTOTYPES-----------------------
-void managerAllControls(string manager_pin);
-void customerAllOptions(string customer_pin);
+void managerAllControls(string manager_id, string manager_pin);
+void customerAllOptions(string customer_id, string customer_pin);
 void accountMenu(int index);
 void accountOperations(int index);
 void accountSettings(int index);
@@ -30,11 +31,11 @@ int main()
 	// 3 fixed managers with unique passwords
 	managers[0].setData("Moosa", "Muhy-ud-Din", "8765");
 	managers[1].setData("Muhammad", "Mehdi", "8520");
-	managers[2].setData("Hassan", "Kaamchor", "1234");
+	managers[2].setData("Hassan", "Saqib", "1234");
 	// --------------------------------------------
 
 	int mangOrCust, signOrLog;
-	string manager_pin, customer_pin;
+	string managr_id, customr_id, manager_pin, customer_pin;
 
 	cout << "\t\t\t----------------------------------------------------";
 	cout << "\n\t\t\t\t\tBANK MANAGEMENT SYSTEM" << endl;
@@ -57,11 +58,14 @@ int main()
 		{
 		case 1:
 		{
+			cout << "\nEnter your ID: ";
+			cin >> managr_id;
+
 			cout << "\nEnter your Pin: ";
 			cin >> manager_pin;
 			system("cls");
 
-			managerAllControls(manager_pin);
+			managerAllControls(managr_id, manager_pin);
 			break;
 		}
 
@@ -84,7 +88,7 @@ int main()
 				{
 				case 1:
 				{
-					if (Customer::getCustomerCount() == 15)
+					if (Customer::getCustomerCount() == CUSTOMERS_LIMIT)
 					{
 						cout << "\t\t\t\t\tSorry! Customer Slot is Full\n";
 						cout << "\t\t\t\t\tNo more Customers can be created at this moment!\n";
@@ -93,7 +97,7 @@ int main()
 
 					else
 					{
-						for (int i = 0; i < 15; i++)
+						for (int i = 0; i < CUSTOMERS_LIMIT; i++)
 						{
 							if (custmr[i].getStatus() == false)
 							{
@@ -115,11 +119,14 @@ int main()
 
 					else
 					{
+						cout << "\nEnter your ID: ";
+						cin >> customr_id;
+
 						cout << "\nEnter your Pin: ";
 						cin >> customer_pin;
 						system("cls");
 
-						customerAllOptions(customer_pin);
+						customerAllOptions(customr_id, customer_pin);
 						break;
 					}
 				}
@@ -158,13 +165,13 @@ int main()
 //                      --------------------------ALL FUNCTIONS DEFINITIONS-----------------------
 
 //            ----------------------------ALL CONTROLS FOR MANAGERS FUNCTION-----------------------
-void managerAllControls(string manager_pin)
+void managerAllControls(string manager_id, string manager_pin)
 {
 	int manager_opt;
 	for (int i = 0; i < Manager::getManagerCount(); i++)
 	{
 
-		if (manager_pin == managers[i].getPin())
+		if (manager_id == managers[i].getManagerID() && manager_pin == managers[i].getPin())
 		{
 			do
 			{
@@ -301,10 +308,66 @@ void managerAllControls(string manager_pin)
 //           ------------------------------------------------------------------------
 
 //            ----------------------------ALL CONTROLS FOR CUSTOMERS FUNCTION-----------------------
+
+void customerAllOptions(string customer_id, string customer_pin)
+{
+	int cust_opt;
+	for (int i = 0; i < CUSTOMERS_LIMIT; i++)
+	{
+		if (customer_id == custmr[i].getCustomerID() && customer_pin == custmr[i].getPin())
+		{
+			do
+			{
+				cout << "\n\n\t\t\t\tWelcome Mr '" << custmr[i].getFullName() << "'\n";
+				cout << "\t\t\t|------------------------------------" << endl;
+				cout << "\t\t\t|  Choose an Option:                 " << endl;
+				cout << "\t\t\t|     1. View Personal Info          " << endl;
+				cout << "\t\t\t|     2. Edit Personal Info          " << endl;
+				cout << "\t\t\t|     3. Delete Personal Info        " << endl;
+				cout << "\t\t\t|     4. Account Options             " << endl;
+				cout << "\t\t\t|     5. Exit This Menu              " << endl;
+				cout << "\t\t\t|------------------------------------" << endl;
+
+				cout << "\t\t\t\tEnter a number: ";
+				cin >> cust_opt;
+				system("cls");
+
+				switch (cust_opt)
+				{
+				case 1:
+					custmr[i].displayCustomer();
+					break;
+
+				case 2:
+					custmr[i].modifyCustomerInfo();
+					break;
+
+				case 3:
+					custmr[i].deleteCustomer();
+					break;
+
+				case 4:
+					accountMenu(i);
+					break;
+
+				case 5:
+					system("cls");
+					break;
+
+				default:
+					cout << "\t\t\t\tIncorrect Key Entered!\n\t\t\t\tTry Again!" << endl;
+					break;
+				}
+			} while (cust_opt != 5);
+			break;
+		}
+	}
+}
+/*
 void customerAllOptions(string customer_pin)
 {
 	int cust_opt;
-	for (int i = 0; i < 15; i++)
+	for (int i = 0; i < CUSTOMERS_LIMIT; i++)
 	{
 		if (customer_pin == custmr[i].getPin())
 		{
@@ -355,6 +418,7 @@ void customerAllOptions(string customer_pin)
 		}
 	}
 }
+*/
 //           ------------------------------------------------------------------------
 
 //            ----------------------------ACCOUNTS FIRST MENU FOR CUSTOMERS-----------------------
@@ -380,7 +444,7 @@ void accountMenu(int index)
 		{
 		case 1:
 		{
-			if (Account::getAccCount() == 30)
+			if (Account::getAccCount() == ACCOUNTS_LIMIT)
 			{
 				cout << "\t\t\t\t\tSorry! Account Slot is Full\n";
 				cout << "\t\t\t\t\tNo more Accounts can be created at this moment!\n";
@@ -510,7 +574,7 @@ void transactionOptions(int index)
 		{
 		case 1:
 		{
-			if (Transaction::getTransCount() == 100)
+			if (Transaction::getTransCount() == TRANSACTIONS_LIMIT)
 			{
 				cout << "\t\t\t\t\tSorry! Transaction Limit is Reached\n";
 				cout << "\t\t\t\t\tNo more Transactions can be made!\n";

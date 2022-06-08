@@ -54,7 +54,7 @@ void Transaction::makeTransaction()
 
     transaction_amount = abs(transaction_amount);
 
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < ACCOUNTS_LIMIT; i++)
     {
         if (sender_accnum == accounts[i].getAccountNo())
         {
@@ -202,6 +202,7 @@ string Transaction::getSenderAccNo()
 // initiallizing static count data member
 int Transaction::transactions_count = 0;
 
+const int TRANSACTIONS_LIMIT = 100;
 Transaction trans[TRANSACTIONS_LIMIT];
 
 #endif /* Transaction_Class_hpp */

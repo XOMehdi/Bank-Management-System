@@ -20,6 +20,7 @@ public:
 
     // getter functions
     static int getManagerCount();
+    string getManagerID() const;
     string getFullName();
     string getPin() const;
     bool getStatus() const;
@@ -74,7 +75,7 @@ void Manager::editCustomer()
     cout << "\nEnter the Customer's ID: ";
     cin >> customer_id;
 
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < CUSTOMERS_LIMIT; i++)
     {
         if (customer_id == custmr[i].getCustomerID())
         {
@@ -88,7 +89,7 @@ void Manager::removeCustomer()
     cout << "\nEnter the Customer's ID: ";
     cin >> customer_id;
 
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < CUSTOMERS_LIMIT; i++)
     {
         if (customer_id == custmr[i].getCustomerID())
         {
@@ -144,6 +145,11 @@ void Manager::viewAllTransactions()
     cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
 }
 
+string Manager::getManagerID() const
+{
+    return manager_id;
+}
+
 string Manager::getFullName()
 {
     return full_name.getFullName();
@@ -167,6 +173,7 @@ int Manager::getManagerCount()
 // initiallizing static count data member
 int Manager::manager_count = 0;
 
+const int MANAGERS_LIMIT = 3;
 Manager managers[MANAGERS_LIMIT];
 
 #endif /* Child_Manager_Class_hpp */

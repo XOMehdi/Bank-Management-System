@@ -147,7 +147,7 @@ bool Customer::getStatus() const
 // functions for integration of account class
 void Customer::openAccount()
 {
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < ACCOUNTS_LIMIT; i++)
     {
         if (accounts[i].getStatus() == false)
         {
@@ -163,7 +163,7 @@ void Customer::editAccount()
     cout << "\nEnter the Account Number: ";
     cin >> acc_num;
 
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < ACCOUNTS_LIMIT; i++)
     {
         if (acc_num == accounts[i].getAccountNo())
         {
@@ -180,7 +180,7 @@ void Customer::viewAccount()
         cout << "\nEnter Your Account Number " << i + 1 << ": ";
         cin >> acc_num;
 
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < ACCOUNTS_LIMIT; i++)
         {
             if (acc_num == accounts[i].getAccountNo())
             {
@@ -196,7 +196,7 @@ void Customer::closeAccount()
     cout << "\nEnter the Account Number: ";
     cin >> acc_num;
 
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < ACCOUNTS_LIMIT; i++)
     {
         if (acc_num == accounts[i].getAccountNo())
         {
@@ -214,7 +214,7 @@ void Customer::closeAllAccounts()
         cout << "\nEnter Account Number " << i + 1 << ": ";
         cin >> acc_num;
 
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < ACCOUNTS_LIMIT; i++)
         {
             if (acc_num == accounts[i].getAccountNo())
             {
@@ -230,7 +230,7 @@ void Customer::depositInAccount()
     cout << "\nEnter the Account Number: ";
     cin >> acc_num;
 
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < ACCOUNTS_LIMIT; i++)
     {
         if (acc_num == accounts[i].getAccountNo())
         {
@@ -245,7 +245,7 @@ void Customer::withdrawFromAccount()
     cout << "\nEnter the Account Number: ";
     cin >> acc_num;
 
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < ACCOUNTS_LIMIT; i++)
     {
         if (acc_num == accounts[i].getAccountNo())
         {
@@ -258,7 +258,7 @@ void Customer::withdrawFromAccount()
 // functions for integration of transaction class
 void Customer::doTransaction()
 {
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < TRANSACTIONS_LIMIT; i++)
     {
         if (trans[i].getTransactionStatus() == false)
         {
@@ -276,7 +276,7 @@ void Customer::viewTransaction()
 
     for (int i = 0; i < no_of_transactions; i++)
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < TRANSACTIONS_LIMIT; i++)
         {
             if (acc_num == trans[i].getSenderAccNo())
             {
@@ -294,7 +294,7 @@ void Customer::removeTransactions()
 
     for (int i = 0; i < no_of_transactions; i++)
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < TRANSACTIONS_LIMIT; i++)
         {
             if (acc_num == trans[i].getSenderAccNo())
             {
@@ -308,6 +308,7 @@ void Customer::removeTransactions()
 // initiallizing static count data member
 int Customer::custmr_count = 0;
 
+const int CUSTOMERS_LIMIT = 15;
 Customer custmr[CUSTOMERS_LIMIT];
 
 #endif /* Child_Customer_Class_hpp */

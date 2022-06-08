@@ -189,6 +189,7 @@ void Account::operator--(int)
 // initiallizing static count data member
 int Account::acc_count = 0;
 
+const int ACCOUNTS_LIMIT = 30;
 Account accounts[ACCOUNTS_LIMIT];
 
 #endif /* Account_Class_hpp */
