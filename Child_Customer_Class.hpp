@@ -12,14 +12,15 @@ class Customer : public User
 {
 private:
     string customer_id, phone_number, acc_num;
-    int no_of_accounts, no_of_transactions;
+    int no_of_accounts;
     static int custmr_count;
 
 public:
+    Account account[3];
+
     Customer() : User()
     {
         no_of_accounts = 0;
-        no_of_transactions = 0;
     }
 
     void readCustomer();
@@ -38,14 +39,14 @@ public:
     // functions for integration of account class
     void openAccount();
     void editAccount();
-    void viewAccount();
+    void viewAllAccounts();
     void closeAccount();
     void closeAllAccounts();
     void depositInAccount();
     void withdrawFromAccount();
 
     // functions for integration of transaction class
-    void doTransaction();
+    void doTransaction(int index, string receiver_accno, float transaction_amount);
     void viewTransaction();
     void removeTransactions();
 };
@@ -88,7 +89,7 @@ void Customer::displayCustomer()
     cout << "Phone Number: " << phone_number << endl;
     cout << "Customer ID: " << customer_id << endl;
     cout << "Number of Accounts: " << no_of_accounts << endl;
-    cout << "Number of Transactions: " << no_of_transactions << endl;
+    cout << "Number of Transactions: " << account[0].no_of_transactions + account[1].no_of_transactions << endl;
     cout << "----------------------------------------------------------------------------------------------" << endl;
 }
 
@@ -100,7 +101,7 @@ void Customer::tabularCustomerInfo()
     cout << phone_number << "       ";
     cout << customer_id << "     \t";
     cout << no_of_accounts << " \t\t\t    ";
-    cout << no_of_transactions << endl;
+    cout << account[0].no_of_transactions + account[1].no_of_transactions << endl;
 }
 
 void Customer::deleteCustomer()
@@ -113,10 +114,7 @@ void Customer::deleteCustomer()
     phone_number = "  ";
 
     if (no_of_accounts > 0)
-    {
         closeAllAccounts();
-        removeTransactions();
-    }
 }
 
 int Customer::getCustomerCount()
@@ -147,15 +145,21 @@ bool Customer::getStatus() const
 // functions for integration of account class
 void Customer::openAccount()
 {
-    for (int i = 0; i < ACCOUNTS_LIMIT; i++)
+    if (no_of_accounts < 3)
     {
-        if (accounts[i].getStatus() == false)
+        for (int i = 0; i < 3; i++)
         {
-            accounts[i].readAccount();
-            no_of_accounts++;
-            break;
+            if (account[i].getStatus() == false)
+            {
+                account[i].readAccount();
+                no_of_accounts++;
+                break;
+            }
         }
     }
+
+    else
+        cout << "\n\t\t\tAccount Limit is Reached!" << endl;
 }
 
 void Customer::editAccount()
@@ -163,44 +167,38 @@ void Customer::editAccount()
     cout << "\nEnter the Account Number: ";
     cin >> acc_num;
 
-    for (int i = 0; i < ACCOUNTS_LIMIT; i++)
+    for (int i = 0; i < no_of_accounts + 1; i++)
     {
-        if (acc_num == accounts[i].getAccountNo())
+        if (acc_num == account[i].getAccountNo())
         {
-            accounts[i].modifyAccountInfo();
+            account[i].modifyAccountInfo();
             break;
         }
     }
 }
 
-void Customer::viewAccount()
+void Customer::viewAllAccounts()
 {
     for (int i = 0; i < no_of_accounts; i++)
     {
-        cout << "\nEnter Your Account Number " << i + 1 << ": ";
-        cin >> acc_num;
-
-        for (int i = 0; i < ACCOUNTS_LIMIT; i++)
-        {
-            if (acc_num == accounts[i].getAccountNo())
-            {
-                accounts[i].displayAccountInfo();
-                break;
-            }
-        }
+        if (account[i].getStatus() == true)
+            account[i].displayAccountInfo();
     }
 }
 
 void Customer::closeAccount()
 {
+    viewAllAccounts();
+
     cout << "\nEnter the Account Number: ";
     cin >> acc_num;
 
-    for (int i = 0; i < ACCOUNTS_LIMIT; i++)
+    for (int i = 0; i < 3; i++)
     {
-        if (acc_num == accounts[i].getAccountNo())
+        if (acc_num == account[i].getAccountNo())
         {
-            accounts[i].deleteAccount();
+            account[i].deleteAccount();
+            no_of_accounts--;
             cout << "\nAccount is Successfully Closed!";
             break;
         }
@@ -210,19 +208,9 @@ void Customer::closeAccount()
 void Customer::closeAllAccounts()
 {
     for (int i = 0; i < no_of_accounts; i++)
-    {
-        cout << "\nEnter Account Number " << i + 1 << ": ";
-        cin >> acc_num;
+        account[i].deleteAccount();
 
-        for (int i = 0; i < ACCOUNTS_LIMIT; i++)
-        {
-            if (acc_num == accounts[i].getAccountNo())
-            {
-                accounts[i].deleteAccount();
-                break;
-            }
-        }
-    }
+    cout << "\nAll Accounts are Successfully Closed!";
 }
 
 void Customer::depositInAccount()
@@ -230,11 +218,11 @@ void Customer::depositInAccount()
     cout << "\nEnter the Account Number: ";
     cin >> acc_num;
 
-    for (int i = 0; i < ACCOUNTS_LIMIT; i++)
+    for (int i = 0; i < no_of_accounts; i++)
     {
-        if (acc_num == accounts[i].getAccountNo())
+        if (acc_num == account[i].getAccountNo())
         {
-            accounts[i].depositAmount();
+            account[i].depositAmount();
             break;
         }
     }
@@ -245,28 +233,20 @@ void Customer::withdrawFromAccount()
     cout << "\nEnter the Account Number: ";
     cin >> acc_num;
 
-    for (int i = 0; i < ACCOUNTS_LIMIT; i++)
+    for (int i = 0; i < no_of_accounts; i++)
     {
-        if (acc_num == accounts[i].getAccountNo())
+        if (acc_num == account[i].getAccountNo())
         {
-            accounts[i].withdrawAmount();
+            account[i].withdrawAmount();
             break;
         }
     }
 }
 
 // functions for integration of transaction class
-void Customer::doTransaction()
+void Customer::doTransaction(int index, string receiver_accno, float transaction_amount)
 {
-    for (int i = 0; i < TRANSACTIONS_LIMIT; i++)
-    {
-        if (trans[i].getTransactionStatus() == false)
-        {
-            trans[i].makeTransaction();
-            no_of_transactions++;
-            break;
-        }
-    }
+    account[index].makeTransaction(receiver_accno, transaction_amount);
 }
 
 void Customer::viewTransaction()
@@ -274,15 +254,12 @@ void Customer::viewTransaction()
     cout << "\nEnter the Account Number: ";
     cin >> acc_num;
 
-    for (int i = 0; i < no_of_transactions; i++)
+    for (int i = 0; i < no_of_accounts; i++)
     {
-        for (int i = 0; i < TRANSACTIONS_LIMIT; i++)
+        if (acc_num == account[i].getAccountNo())
         {
-            if (acc_num == trans[i].getSenderAccNo())
-            {
-                trans[i].showTransaction();
-                break;
-            }
+            account[i].showTransactions();
+            break;
         }
     }
 }
@@ -292,15 +269,12 @@ void Customer::removeTransactions()
     cout << "\nEnter the Account Number: ";
     cin >> acc_num;
 
-    for (int i = 0; i < no_of_transactions; i++)
+    for (int i = 0; i < no_of_accounts; i++)
     {
-        for (int i = 0; i < TRANSACTIONS_LIMIT; i++)
+        if (acc_num == account[i].getAccountNo())
         {
-            if (acc_num == trans[i].getSenderAccNo())
-            {
-                trans[i].deleteTransRecord();
-                break;
-            }
+            account[i].eraseTransactions();
+            break;
         }
     }
 }

@@ -80,6 +80,7 @@ void Manager::editCustomer()
         if (customer_id == custmr[i].getCustomerID())
         {
             custmr[i].modifyCustomerInfo();
+            break;
         }
     }
 }
@@ -95,6 +96,7 @@ void Manager::removeCustomer()
         {
             custmr[i].deleteCustomer();
             cout << "\nCustomer is Successfully Removed!";
+            break;
         }
     }
 }
@@ -102,7 +104,7 @@ void Manager::removeCustomer()
 //            ----------------------------VIEW ALL INFO FUNCTIONS-----------------------
 void Manager::viewAllCustomersInfo()
 {
-    cout << "\n-----------------------------------------------Customers List-----------------------------------------------------------" << endl;
+    cout << "\n-----------------------------------------------Customers List---------------------------------------------------" << endl;
     cout << "|Customer's Name --- Pin --- Phone Number --- Customer ID --- No of Accounts --- No of Transactions|" << endl;
     for (int i = 0; i < Customer::getCustomerCount(); i++)
     {
@@ -112,20 +114,21 @@ void Manager::viewAllCustomersInfo()
         else
             cout << "                ---                     ---                 " << endl;
     }
-    cout << "--------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "-----------------------------------------------------------------------------------------------------------------" << endl;
 }
 
 void Manager::viewAllAccountsInfo()
 {
     cout << "\n-------------------------Accounts List---------------------------" << endl;
     cout << "|Account Number --- Account Holder Name --- Account Balance|" << endl;
-    for (int i = 0; i < Account::getAccCount(); i++)
-    {
-        if (accounts[i].getStatus() == true)
-            accounts[i].tabularAccInfo();
 
-        else
-            cout << "                ---                     ---                 " << endl;
+    for (int i = 0; i < Customer::getCustomerCount(); i++)
+    {
+        for (int j = 0; j < 2; j++) // 2 = max accounts any customer can have
+        {
+            if (custmr[i].account[j].getStatus() == true)
+                custmr[i].account[j].tabularAccInfo();
+        }
     }
     cout << "------------------------------------------------------------------" << endl;
 }
@@ -134,13 +137,17 @@ void Manager::viewAllTransactions()
 {
     cout << "\n---------------------------------------------Transactions List----------------------------------------------------" << endl;
     cout << "|Transaction Time --- Transaction Date --- Transferred By (AN) --- Transferred To (AN) --- Transaction Amount|" << endl;
-    for (int i = 0; i < Transaction::getTransCount(); i++)
-    {
-        if (trans[i].getTransactionStatus() == true)
-            trans[i].tabularTransInfo();
 
-        else
-            cout << "                  ---                  ---                     ---                     ---                    " << endl;
+    for (int i = 0; i < Customer::getCustomerCount(); i++)
+    {
+        for (int j = 0; j < 2; j++) // 2 = max accounts any customer can have
+        {
+            for (int k = 0; k < 5; k++)
+            {
+                if (custmr[i].account[j].trans[k].getTransactionStatus() == true)
+                    custmr[i].account[j].trans[k].tabularTransInfo();
+            }
+        }
     }
     cout << "--------------------------------------------------------------------------------------------------------------------" << endl;
 }
