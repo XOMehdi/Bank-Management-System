@@ -7,8 +7,6 @@
 #include <iostream>
 using namespace std;
 
-const int ACCOUNTS_LIMIT = 45;
-const int TRANSACTIONS_LIMIT = 225;
 /*	LIMIT OF OBJECTS IN THE SYSTEM
 Total 3 managers
 Total 15 customers
